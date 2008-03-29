@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zones>
+    <area id="1" name="Sand">
+        <img>Sand.gi</img>
+        <effect>IMove</effect>
+        <value>-10</value>
+    </area>
+    <zone>
+        <type>1</type>
+        <x>1</x>
+        <y>1</y>
+    </zone>
+</zones>
