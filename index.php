@@ -1,6 +1,6 @@
 <?php
 /***************************************************************************
- *                           system/class.instance.php
+ *                                 index.php
  *                            -------------------
  *     begin                : 03-29-2008
  *     copyright            : (c) 2008 The phpBG Team
@@ -20,14 +20,4 @@
  *   GNU General Public License for more details.
  *
  ***************************************************************************/
-
-class unit
-{
-    
-}
-
-class building
-{
-    
-}
 ?>

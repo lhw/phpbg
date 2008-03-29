@@ -1,0 +1,96 @@
+[authors]
+Developer        - Lennart Weller (cyfreeze)
+Developer        - Sebastian Reichel (elektranox)
+Graphic Designer - {Graphic_Designer}
+
+[license]
+	phpbg - PHP Browsergame is a browsergame engine.
+	Copyright (C) 2006-2008 Sebastian Reichel
+	Copyright (C) 2008 Lennart Weller
+	Copyright (C) 2008 {Graphic_Designer}
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+
+[new in this version]
+	* object based
+	* using XML for some half-static data (buildings,units,...)
+	* filesystem hierarchy changed
+	* using plugins for almost all features
+	* changed license from GPLv2 to GPLv3
+	* new devolper: Lennart Weller (cyfreeze)
+	* new graphic designer - {Graphic_Designer}
+
+[object based]
+phpBG will now base on objects. The core objects will be found in the "system"
+dir. The following things are supposed to be "core"-objects:
+	* database
+	* template
+	* mailing
+	* plugins
+	* ...
+
+[plugin based]
+phpBG will move a lot of features into plugins. For example the news section
+will be a (default) plugin. If you don't like it you can just remove the plugin
+and live without it. If you want more features - just search for a plugin. The
+default plugins will be:
+
+Plugin -> User -> Highscore
+Plugin -> User -> Messages
+Plugin -> User -> Clan
+Plugin -> User -> Stats (was "My Land")
+Plugin -> User -> Buildings
+
+Plugin -> Admin -> News
+Plugin -> Admin -> Clan
+Plugin -> Admin -> Message
+Plugin -> Admin -> Era
+Plugin -> Admin -> User
+Plugin -> Admin -> Language
+Plugin -> Admin -> Building
+Plugin -> Admin -> Design
+Plugin -> Admin -> Game Info
+Plugin -> Admin -> Plugins
+Plugin -> Admin -> Ressources
+
+Plugin -> Building -> Common -> House
+Plugin -> Building -> Common -> Warehouse
+Plugin -> Building -> Common -> Town Center
+Plugin -> Building -> Common -> Market Place
+Plugin -> Building -> Research -> School
+Plugin -> Building -> Research -> Laboratory
+Plugin -> Building -> Research -> Commando Center
+Plugin -> Building -> Research -> Defensive Center
+Plugin -> Building -> Ressources -> Lumbercamp
+Plugin -> Building -> Ressources -> Stonemason
+Plugin -> Building -> Ressources -> Goldsmith
+Plugin -> Building -> Ressources -> Fields
+Plugin -> Building -> Ressources -> Ironsmith
+Plugin -> Building -> Ressources -> Oil Refinery
+Plugin -> Building -> Ressources -> Generator
+Plugin -> Building -> War -> Weaponry
+Plugin -> Building -> War -> Barracks
+Plugin -> Building -> War -> Factory
+Plugin -> Building -> War -> Port
+Plugin -> Building -> War -> Airport
+
+every plugin consists of a php class with the code and a XML file,
+which contains information about the plugin, for example its dependencies.
+
+[Admin Plugins]
+Due to the change, that half-static data will be put into
+data->xml->*.xml the admin plugins need write access to
+this file. If they don't have write access they will give
+you the chance to download the new file, so that you can
+upload the new file yourself.
