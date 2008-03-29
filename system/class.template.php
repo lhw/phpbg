@@ -18,7 +18,7 @@ class template
         if($loadfile == null) $this->templatefile = $this->templatedir."/index.tpl";
         else
         {
-            if(fileexists($this->templatedir.$loadfile))
+            if(file_exists($this->templatedir.$loadfile))
                $this->templatefile = $this->templatedir.$loadfile;
             else log::append("File does not exist",log::ERROR);
         }
