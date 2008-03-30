@@ -35,7 +35,7 @@ class template
     public function __construct($loadfile = null, $rootdir = null)
     {
         if(isset($rootdir) && isdir($rootdir)) $this->templatedir = $rootdir;
-        else $this->templatedir = "design/default/templates/";
+        else $this->templatedir = "styles/default/tpl/";
         
         if($loadfile == null) $this->templatefile = $this->templatedir."/index.tpl";
         else
@@ -52,11 +52,11 @@ class template
     */
     public function _show()
     {
-        if(isarray($this->replacement)) extract($this->replacement);
-        obstart();
+        if(is_array($this->replacement)) extract($this->replacement);
+        ob_start();
         include($this->templatefile);
-        $content = obgetcontents();
-        obendclean();
+        $content = ob_get_contents();
+        ob_end_clean();
         return $content;
     }
     /**
@@ -68,7 +68,7 @@ class template
     public function _assign($env, $value)
     {
         if($env && $value)
-            $this->replacement[$env] = isobject($value) ? $value->show() : $value;
+            $this->replacement[$env] = is_object($value) ? $value->_show() : $value;
     }
 }
 ?>

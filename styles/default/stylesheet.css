@@ -58,7 +58,7 @@ h3 {
 }
 #header {
     padding-left:5%;
-    background:url('data/img/common/browser.png') #eee no-repeat left;
+    background:url('/data/img/common/browser.png') #eee no-repeat left;
     top:0px;
     left:0px;
     right:0px;
@@ -103,7 +103,7 @@ h3 {
     top:61px;
     border: 1px solid maroon;
     height:32px;
-    background:url('data/img/common/cancel.png') #f25 no-repeat left;
+    background:url('/data/img/common/cancel.png') #f25 no-repeat left;
     text-align:center;
     vertical-align:middle;
     padding-left:3%;

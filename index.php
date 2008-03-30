@@ -25,12 +25,39 @@ require("system/class.auth.php");
 require("system/class.base.php");
 require("system/class.dba.php");
 require("system/class.template.php");
+$index = new template();
+$nav = new template("navigation.tpl");
+$res = new template("ressources.tpl");
+$news = new template("news.tpl");
 
-// short test if game is installed by checking for successful MySQL connection
-// if false goto install/ via header() and exit
+$links = array(array("link" => "#", "name" => "Home"),
+               array("link" => "#", "name" => "Manage"),
+               array("link" => "#", "name" => "Leave"));
+$reslist = array("gold" => 1000,
+                  "stone" => 1000,
+                  "wood" => 1000,
+                  "food" => 1000,
+                  "iron" => 1000,
+                  "oil" => 1000,
+                  "energy" => 1000);
+$newslist = array(array("title" => "Lorem ipsum dolor sit amet, consectetuer ", "text" => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi."),
+                  array("title" => "Lorem ipsum dolor sit amet, consectetuer ", "text" => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi."),
+                  array("title" => "Lorem ipsum dolor sit amet, consectetuer ", "text" => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi."),
+                  array("title" => "Lorem ipsum dolor sit amet, consectetuer ", "text" => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi."),
+                  array("title" => "Lorem ipsum dolor sit amet, consectetuer ", "text" => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi."));
 
-//test if user is authenticated
-// if not show "outside" area with [HOME] [REGISTER] [LOGIN]
-// if so go to content management system
+$news->_assign("newslist", $newslist);
+$nav->_assign("menu", "Navigation");
+$nav->_assign("items", $links);
+$res->_assign("res", $reslist);
+$index->_assign("lang", "en");
+$index->_assign("title", "phpBG");
+$index->_assign("headline", "phpBG");
+$index->_assign("subtitle", "The Open-Source Browserengine");
+$index->_assign("navigation", $nav);
+$index->_assign("options", $res);
+$index->_assign("content", $news);
+
+echo $index->_show();
 
 ?>
