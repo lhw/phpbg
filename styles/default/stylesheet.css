@@ -55,6 +55,7 @@ h3 {
     bottom:17px;
     top:61px;
     padding-left:3%;
+    padding-right:3%;
     overflow:auto;
     z-index:0;
 }

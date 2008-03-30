@@ -3,7 +3,7 @@
 <head>
     <title><?=$title;?></title>
     <meta http-equiv="content-type" content="text/xhtml+xml charset=UTF-8" />
-    <link rel="stylesheet" media="screen projection" type="text/css" href="styles/default/stylesheet.css" />
+    <link rel="stylesheet" media="screen, projection" type="text/css" href="styles/default/stylesheet.css" />
 </head>
 <body>
     <div id="header">
