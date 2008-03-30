@@ -94,3 +94,23 @@ data->xml->*.xml the admin plugins need write access to
 this file. If they don't have write access they will give
 you the chance to download the new file, so that you can
 upload the new file yourself.
+
+
+[Design]
+There will be 3 Designtemplates for each Design, now. One for the non-logged-in
+part, one for the normal playing part and last but not least one for the admin
+area. The new admin area is supposed to change the navigation completly.
+Similar like this:
+
++------------------------------+		+-------------------------+
+| back to Player View          |		| News                    |
+| Clan Configuration           |		| Statistics              |
+| User Configuration           |		| ...                     |
+| ...                          |		| Admin Panel             |
++------------------------------+		+-------------------------+
+
+[Home Text]
+The text displayed on the home-page (in non-logged in modus) will now be in a
+*.txt file. This file will be home.en.txt home.de.txt - one for each language
+the game is supposed to support.
+

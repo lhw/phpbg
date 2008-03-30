@@ -20,4 +20,17 @@
  *   GNU General Public License for more details.
  *
  ***************************************************************************/
+ 
+require("system/class.auth.php");
+require("system/class.base.php");
+require("system/class.dba.php");
+require("system/class.template.php");
+
+// short test if game is installed by checking for successful MySQL connection
+// if false goto install/ via header() and exit
+
+//test if user is authenticated
+// if not show "outside" area with [HOME] [REGISTER] [LOGIN]
+// if so go to content management system
+
 ?>
