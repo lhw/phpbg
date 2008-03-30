@@ -16,49 +16,20 @@ h2 {
     font-size:20px;
     line-height:20px;
 }
-ul {
-    margin:5px;
-}
 h3 {
     font-size:16px;
     line-height:16px;
     border-bottom:1px dotted;
 }
-#navigation h3 {
-    direction:rtl;
-    margin-right:10%;
-}
-#options h3 {
-    margin-left:10%;
-}
-#content h1 {
-    padding-top:1%;
-    margin-right:8%;
-    border-bottom:1px solid;
-    margin-bottom:3%;
-}
-#content h2 {
-    border-bottom: 1px solid;
-}
-#options li {
-    list-style:none;
-}
-#header h2 {
-    font-size:16px;
-    line-height:16px;
-    padding-left:1%;
-}
+
 #header, #content, #navigation, #options, #footer, #message {
     position:absolute;
     background: #eee;
     border: 1px solid #ccc;
 }
-#content,#message, #options, #navigation {
-    float:left;
-}
 #header {
     padding-left:5%;
-    background:url('/data/img/common/browser.png') #eee no-repeat left;
+    background:url('../../data/img/common/browser.png') #eee no-repeat left;
     top:0px;
     left:0px;
     right:0px;
@@ -103,8 +74,34 @@ h3 {
     top:61px;
     border: 1px solid maroon;
     height:32px;
-    background:url('/data/img/common/cancel.png') #f25 no-repeat left;
+    background:url('../../data/img/common/cancel.png') #f25 no-repeat left;
     text-align:center;
-    vertical-align:middle;
     padding-left:3%;
+}
+#navigation h3 {
+    direction:rtl;
+    margin-right:10%;
+}
+#options h3 {
+    margin-left:10%;
+}
+#options table {
+    margin-left:10%;
+}
+#content h1 {
+    padding-top:1%;
+    margin-right:8%;
+    border-bottom:1px solid;
+    margin-bottom:3%;
+}
+#content h2 {
+    border-bottom: 1px solid;
+}
+#options li {
+    list-style:none;
+}
+#header h2 {
+    font-size:16px;
+    line-height:16px;
+    padding-left:1%;
 }

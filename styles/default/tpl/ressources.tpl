@@ -1,10 +1,31 @@
 <h3>Ressources</h3>
-    <ul>
-        <li>Gold: <?=$res['gold'];?></li>
-        <li>Stone: <?=$res['stone'];?></li>
-        <li>Wood: <?=$res['wood'];?></li>
-        <li>Food: <?=$res['food'];?></li>
-        <li>Iron: <?=$res['iron'];?></li>
-        <li>Oil: <?=$res['oil'];?></li>
-        <li>Energy: <?=$res['energy'];?></li>
-    </ul>
+    <table>
+        <tr>
+            <td>Gold:</td>
+            <td><?=$res['gold'];?></td>
+        </tr>
+        <tr>
+            <td>Stone:</td>
+            <td><?=$res['stone'];?></td>
+        </tr>
+        <tr>
+            <td>Wood:</td>
+            <td><?=$res['wood'];?></td>
+        </tr>
+        <tr>
+            <td>Food:</td>
+            <td><?=$res['food'];?></td>
+        </tr>
+        <tr>
+            <td>Iron:</td>
+            <td><?=$res['iron'];?></td>
+        </tr>
+        <tr>
+            <td>Oil:</td>
+            <td><?=$res['oil'];?></td>
+        </tr>
+        <tr>
+            <td>Energy:</td>
+            <td><?=$res['energy'];?></td>
+        </tr>
+    </table>

@@ -21,14 +21,17 @@
  *
  ***************************************************************************/
  
-require("system/class.auth.php");
+require("system/class.instance.php");
 require("system/class.base.php");
 require("system/class.dba.php");
 require("system/class.template.php");
+require("system/class.mail.php");
+
 $index = new template();
 $nav = new template("navigation.tpl");
 $res = new template("ressources.tpl");
 $news = new template("news.tpl");
+$error = new template("error.tpl");
 
 $links = array(array("link" => "#", "name" => "Home"),
                array("link" => "#", "name" => "Manage"),
@@ -50,10 +53,12 @@ $news->_assign("newslist", $newslist);
 $nav->_assign("menu", "Navigation");
 $nav->_assign("items", $links);
 $res->_assign("res", $reslist);
+$error->_assign("message", "<span>Lorem ipsum dolor sit amet, consectetuer</span>");
 $index->_assign("lang", "en");
 $index->_assign("title", "phpBG");
 $index->_assign("headline", "phpBG");
 $index->_assign("subtitle", "The Open-Source Browserengine");
+$index->_assign("error", $error);
 $index->_assign("navigation", $nav);
 $index->_assign("options", $res);
 $index->_assign("content", $news);
