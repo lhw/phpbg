@@ -1,31 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ressources>
   <ressource id="1" name="gold">
-    <era>1 2 3 4 5 6 7 8 9 10 11 12 13 14</era>
+    <table name="#era">1 2 3 4 5 6 7 8 9 10 11 12 13 14</table>
+    <set name="era" val="#stage"/>
     <img>data/img/ressources/gold.png</img>
   </ressource>
   <ressource id="2" name="stone">
-    <era>1 2 3 4 5 6 7 8 9 10 11 12 13 14</era>
+    <table name="#era">1 2 3 4 5 6 7 8 9 10 11 12 13 14</table>
+    <set name="era" val="#stage"/>
     <img>data/img/ressources/stone.png</img>
   </ressource>
   <ressource id="3" name="wood">
-    <era>1 2 3 4 5 6 7 8 9 10 11 12 13 14</era>
+    <table name="#era">1 2 3 4 5 6 7 8 9 10 11 12 13 14</table>
+    <set name="era" val="#stage"/>
     <img>data/img/wood.png</img>
   </ressource>
   <ressource id="4" name="food">
-    <era>1 2 3 4 5 6 7 8 9 10 11 12 13 14</era>
+    <table name="#era">1 2 3 4 5 6 7 8 9 10 11 12 13 14</table>
+    <set name="era" val="#stage"/>
     <img>data/img/food.png</img>
   </ressource>
   <ressource id="5" name="iron">
-    <era>5 6 7 8 9 10 11 12 13 14 15</era>
+    <table name="#era">5 6 7 8 9 10 11 12 13 14</table>
+    <set name="era" val="#stage"/>
     <img>data/img/iron.png</img>
   </ressource>
   <ressource id="6" name="oil">
-    <era>10 11 12 13 14</era>
+    <table name="#era">10 11 12 13 14</table>
+    <set name="era" val="#stage"/>
     <img>data/img/oil.png</img>
   </ressource>
   <ressource id="7" name="energy">
-    <era>12 13 14</era>
+    <table name="#era">12 13 14</table>
+    <set name="era" val="#stage"/>
     <img>data/img/energy</img>
   </ressource>
-</units>
+</ressources>

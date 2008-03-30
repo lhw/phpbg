@@ -1,31 +1,18 @@
 <h3>Ressources</h3>
     <table>
-        <tr>
-            <td>Gold:</td>
-            <td><?=$res['gold'];?></td>
-        </tr>
-        <tr>
-            <td>Stone:</td>
-            <td><?=$res['stone'];?></td>
-        </tr>
-        <tr>
-            <td>Wood:</td>
-            <td><?=$res['wood'];?></td>
-        </tr>
-        <tr>
-            <td>Food:</td>
-            <td><?=$res['food'];?></td>
-        </tr>
-        <tr>
-            <td>Iron:</td>
-            <td><?=$res['iron'];?></td>
-        </tr>
-        <tr>
-            <td>Oil:</td>
-            <td><?=$res['oil'];?></td>
-        </tr>
-        <tr>
-            <td>Energy:</td>
-            <td><?=$res['energy'];?></td>
-        </tr>
+<?
+	$xml = new XMLReader();
+	$xml->open("data/xml/ressources.xml");
+	while($xml->read()) {
+		if($xml->name == "ressource" && $xml->nodeType == 1) {
+			$name = $xml->getAttribute("name");
+			$value = $res[$name];
+			print "        <tr>\n";
+			print "            <td>$name</td>\n";
+			print "            <td>".$res[$name]."</td>\n";
+			print "        </tr>\n";
+		}
+	}
+	$xml->close();
+?>
     </table>
