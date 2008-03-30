@@ -1,0 +1,110 @@
+body {
+    margin:0;
+    padding:0;
+    font:12px sans-serif;
+    font-variant:small-caps;
+}
+h1, h2, h3 {
+    font-weight:normal;
+    margin:0 auto 0;
+}
+h1 {
+    font-size:23px;
+    line-height:23px;
+}
+h2 {
+    font-size:20px;
+    line-height:20px;
+}
+ul {
+    margin:5px;
+}
+h3 {
+    font-size:16px;
+    line-height:16px;
+    border-bottom:1px dotted;
+}
+#navigation h3 {
+    direction:rtl;
+    margin-right:10%;
+}
+#options h3 {
+    margin-left:10%;
+}
+#content h1 {
+    padding-top:1%;
+    margin-right:8%;
+    border-bottom:1px solid;
+    margin-bottom:3%;
+}
+#content h2 {
+    border-bottom: 1px solid;
+}
+#options li {
+    list-style:none;
+}
+#header h2 {
+    font-size:16px;
+    line-height:16px;
+    padding-left:1%;
+}
+#header, #content, #navigation, #options, #footer, #message {
+    position:absolute;
+    background: #eee;
+    border: 1px solid #ccc;
+}
+#content,#message, #options, #navigation {
+    float:left;
+}
+#header {
+    padding-left:5%;
+    background:url('data/img/common/browser.png') #eee no-repeat left;
+    top:0px;
+    left:0px;
+    right:0px;
+    height:60px;
+}
+#navigation {
+    width:175px;
+    left:0px;
+    bottom:17px;
+    top:61px;
+    overflow:hidden;
+}
+#options {
+    width:175px;
+    right:0px;
+    bottom:17px;
+    top:61px;
+    overflow:hidden;
+}
+#content {
+    left:176px;
+    right:176px;
+    bottom:17px;
+    top:61px;
+    padding-left:3%;
+    overflow:auto;
+    z-index:0;
+}
+#footer {
+    bottom:0px;
+    left:0px;
+    right:0px;
+    height:16px;
+    text-align:center;
+}
+#message {
+    display:block;
+    z-index:1;
+    position:absolute;
+    left:176px;
+    right:176px;
+    top:61px;
+    border: 1px solid maroon;
+    height:32px;
+    background:url('data/img/common/cancel.png') #f25 no-repeat left;
+    text-align:center;
+    vertical-align:middle;
+    padding-left:3%;
+}

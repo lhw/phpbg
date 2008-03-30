@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zones>
     <area id="1" name="Sand">
-        <img>Sand.gi</img>
+        <img>Sand.gif</img>
         <effect>IMove</effect>
         <value>-10</value>
     </area>

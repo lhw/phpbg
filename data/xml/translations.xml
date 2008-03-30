@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<translation>
+    <trans id="1" name="NOT_ENOUGH_WOOD">
+        <en>Not enough Wood</en>
+        <de>Nicht genug Holz</de>
+    </trans>
+    <trans id="2" name="YOU_ARE_MISSING_S_WOOD">
+        <en>You are missing %u units of wood</en>
+        <de>Ihnen fehlen %u Einheiten Holz</de>
+    </trans>
+</translation>

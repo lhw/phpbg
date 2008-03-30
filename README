@@ -64,26 +64,26 @@ Plugin -> Admin -> Game Info
 Plugin -> Admin -> Plugins
 Plugin -> Admin -> Ressources
 
-Plugin -> Building -> Common -> House
-Plugin -> Building -> Common -> Warehouse
-Plugin -> Building -> Common -> Town Center
-Plugin -> Building -> Common -> Market Place
-Plugin -> Building -> Research -> School
-Plugin -> Building -> Research -> Laboratory
-Plugin -> Building -> Research -> Commando Center
-Plugin -> Building -> Research -> Defensive Center
-Plugin -> Building -> Ressources -> Lumbercamp
-Plugin -> Building -> Ressources -> Stonemason
-Plugin -> Building -> Ressources -> Goldsmith
-Plugin -> Building -> Ressources -> Fields
-Plugin -> Building -> Ressources -> Ironsmith
-Plugin -> Building -> Ressources -> Oil Refinery
-Plugin -> Building -> Ressources -> Generator
-Plugin -> Building -> War -> Weaponry
-Plugin -> Building -> War -> Barracks
-Plugin -> Building -> War -> Factory
-Plugin -> Building -> War -> Port
-Plugin -> Building -> War -> Airport
+Instance -> Building -> Common -> House
+Instance -> Building -> Common -> Warehouse
+Instance -> Building -> Common -> Town Center
+Instance -> Building -> Common -> Market Place
+Instance -> Building -> Research -> School
+Instance -> Building -> Research -> Laboratory
+Instance -> Building -> Research -> Commando Center
+Instance -> Building -> Research -> Defensive Center
+Instance -> Building -> Ressources -> Lumbercamp
+Instance -> Building -> Ressources -> Stonemason
+Instance -> Building -> Ressources -> Goldsmith
+Instance -> Building -> Ressources -> Fields
+Instance -> Building -> Ressources -> Ironsmith
+Instance -> Building -> Ressources -> Oil Refinery
+Instance -> Building -> Ressources -> Generator
+Instance -> Building -> War -> Weaponry
+Instance -> Building -> War -> Barracks
+Instance -> Building -> War -> Factory
+Instance -> Building -> War -> Port
+Instance -> Building -> War -> Airport
 
 every plugin consists of a php class with the code and a XML file,
 which contains information about the plugin, for example its dependencies.

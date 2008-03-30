@@ -32,6 +32,10 @@ class database
     public $result;
     public $affected_rows;
     
+    /**
+    *   Loads the properties and assigns them to a protected variable
+    *   @access public
+    */
     public function __construct()
     {
         include("config/properties.php");
@@ -41,6 +45,10 @@ class database
         }
         else log::_append("Database type is not supported", log::ERROR);
     }
+    /**
+    *   Connects to the database via the defined database layer
+    *   @access protected
+    */
     protected function _connect()
     {
         switch($this->data['type'])
@@ -59,6 +67,10 @@ class database
                 break;
         }
     }
+    /**
+    *   Closes the database connection of the database layer
+    *   @access protected
+    */
     protected function _close()
     {
         switch($this->data['type'])
@@ -72,7 +84,12 @@ class database
                 break;
         }
     }
-    public function _query()
+    /**
+    *   Executes the query given in $this->sql. Each "?" must have a replacement in $arrvalues
+    *   @param array $arrvalues The values ordered for the replacements
+    *   @access public
+    */
+    public function _query($arrvalues = null)
     {
         switch($this->data['type'])
         {
@@ -102,6 +119,11 @@ class database
                 break;
         }
     }
+    /**
+    *   @deprecated
+    *   In order to fit the PDOmysql syntax the normal has to be modified
+    *   @access protected
+    */
     protected function _save($arrvalues = null)
     {
         $this->sql = str_replace("%s", "§§", $this->db_sql);
