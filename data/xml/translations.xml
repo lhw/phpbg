@@ -1,11 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <translation>
-    <trans id="1" name="NOT_ENOUGH_WOOD">
-        <en>Not enough Wood</en>
-        <de>Nicht genug Holz</de>
+    <trans id="1" name="RESSOURCE_WOOD">
+        <en>wood</en>
+        <de>Holz</de>
     </trans>
-    <trans id="2" name="YOU_ARE_MISSING_S_WOOD">
-        <en>You are missing %u units of wood</en>
-        <de>Ihnen fehlen %u Einheiten Holz</de>
+    <trans id="2" name="RESSOURCE_GOLD">
+        <en>gold</en>
+	<de>Gold</de>
+    </trans>
+    <trans id="3" name="RESSOURCE_STONE">
+        <en>stone</en>
+	<de>Stein</de>
+    </trans>
+    <trans id="4" name="RESSOURCE_FOOD">
+        <en>food</en>
+	<de>Nahrung</de>
+    </trans>
+    <trans id="5" name="RESSOURCE_IRON">
+        <en>iron</en>
+	<de>Eisen</de>
+    </trans>
+    <trans id="6" name="RESSOURCE_OIL">
+        <en>oil</en>
+	<de>Öl</de>
+    </trans>
+    <trans id="7" name="RESSOURCE_ENERGY">
+        <en>energy</en>
+	<de>Energie</de>
+    </trans>
+    <trans id="8" name="NOT_ENOUGH_S">
+        <en>Not enough %s</en>
+	<de>Nicht genug %s</de>
+    </trans>
+    <trans id="9" name="YOU_ARE_MISSING_U_UNITS_OF_S">
+        <en>You are missing %u units of %s</en>
+	<de>Dir fehlen %u Einheiten %s</de>
     </trans>
 </translation>

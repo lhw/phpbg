@@ -25,20 +25,20 @@ $database['pass'] = "phpbg";
 $database['data'] = "phpbg";
 //===================-[Mailservice]
 /*
-*   usem:
-*       Activate the SMTP mailservice via yes else use no
+*   type:
+*       use smtp for SMTP mailing, php for PHP mailing or none to deactivate mails
 *   addr:
-*       The mailservers address. Like smtp.example.com
+*       The mailservers address. Like smtp.example.com (only for SMTP mode)
 *   port:
-*       The mailservers port. Default 25
+*       The mailservers port. Default 25 (only for SMTP mode)
 *   ussl:
-*       If the mailserver needs ssl or ssl is avaiable write yes here
+*       If the mailserver needs ssl or ssl is avaiable write yes here (only for SMTP mode)
 *   user:
-*       The user which is allowed to send the mails
+*       The user which is allowed to send the mails (only for SMTP mode)
 *   pass:
-*       The password for the user
+*       The password for the user (only for SMTP mode)
 */
-$mailserv['usem'] = "yes";
+$mailserv['type'] = "smtp";
 $mailserv['addr'] = "smtp.example.com";
 $mailserv['port'] = "25";
 $mailserv['ussl'] = "yes";

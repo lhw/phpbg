@@ -114,3 +114,14 @@ The text displayed on the home-page (in non-logged in modus) will now be in a
 *.txt file. This file will be home.en.txt home.de.txt - one for each language
 the game is supposed to support.
 
+[When can I attack an enemy?]
+To prevent new players from being powned you wont be able to attack all players.
+1. You will only be able to attack an enemy which is near the time you are in.
+2. You will not be able to attack players which registered in 7 days ago (or less)
+
+[Reputation]
+There is a second thing preventing you from powning really lame players - 
+reputation. You will gain reputation points when you defend yourself against
+an other player successfully or if you attack an player, which has more power
+than you. But if you attack an player which has less points than you, your
+reputation will decrease.
