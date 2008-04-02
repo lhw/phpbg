@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugins>
+	<plugin id="1" type="unit special instance" name="test plugin">
+		<file>plugin/class.test.php</file>
+		<depends type="plugin">tester plugin</depends>
+		<provides type="class">unit.submarine</provide>
+		<author>Max Mustermann</author>
+		<version>0.10</version>
+	</plugin>
+</plugins>

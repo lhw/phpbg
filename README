@@ -1,13 +1,13 @@
 [authors]
 Developer        - Lennart Weller (cyfreeze)
 Developer        - Sebastian Reichel (elektranox)
-Graphic Designer - {Graphic_Designer}
+Graphic Designer - ${Graphic_Designer}
 
 [license]
 	phpbg - PHP Browsergame is a browsergame engine.
 	Copyright (C) 2006-2008 Sebastian Reichel
 	Copyright (C) 2008 Lennart Weller
-	Copyright (C) 2008 {Graphic_Designer}
+	Copyright (C) 2008 ${Graphic_Designer}
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -25,11 +25,13 @@ Graphic Designer - {Graphic_Designer}
 [new in this version]
 	* object based
 	* using XML for some half-static data (buildings,units,...)
-	* filesystem hierarchy changed
-	* using plugins for almost all features
+	* variable ressources
+	* filesystem hierarchy changed (much better IMHO)
+	* using plugins for almost a lot of features
 	* changed license from GPLv2 to GPLv3
 	* new devolper: Lennart Weller (cyfreeze)
-	* new graphic designer - {Graphic_Designer}
+	* new graphic designer - ${Graphic_Designer}
+	* needs at least PHP 5.2
 
 [object based]
 phpBG will now base on objects. The core objects will be found in the "system"
@@ -38,7 +40,8 @@ dir. The following things are supposed to be "core"-objects:
 	* template
 	* mailing
 	* plugins
-	* ...
+	* auth
+	* instance
 
 [plugin based]
 phpBG will move a lot of features into plugins. For example the news section
@@ -64,29 +67,18 @@ Plugin -> Admin -> Game Info
 Plugin -> Admin -> Plugins
 Plugin -> Admin -> Ressources
 
-Instance -> Building -> Common -> House
-Instance -> Building -> Common -> Warehouse
-Instance -> Building -> Common -> Town Center
-Instance -> Building -> Common -> Market Place
-Instance -> Building -> Research -> School
-Instance -> Building -> Research -> Laboratory
-Instance -> Building -> Research -> Commando Center
-Instance -> Building -> Research -> Defensive Center
-Instance -> Building -> Ressources -> Lumbercamp
-Instance -> Building -> Ressources -> Stonemason
-Instance -> Building -> Ressources -> Goldsmith
-Instance -> Building -> Ressources -> Fields
-Instance -> Building -> Ressources -> Ironsmith
-Instance -> Building -> Ressources -> Oil Refinery
-Instance -> Building -> Ressources -> Generator
-Instance -> Building -> War -> Weaponry
-Instance -> Building -> War -> Barracks
-Instance -> Building -> War -> Factory
-Instance -> Building -> War -> Port
-Instance -> Building -> War -> Airport
+Admin area will completly base on plugin to make it easier to 
 
-every plugin consists of a php class with the code and a XML file,
-which contains information about the plugin, for example its dependencies.
+These building types are standard and included in the phpbg instance class for buildings:
+Instance -> Building -> House
+Instance -> Building -> Warehouse
+Instance -> Building -> Ressources
+Instance -> Building -> Town Center
+Instance -> Building -> Market Place
+Instance -> Building -> Research
+Instance -> Building -> War
+
+If you want more buildings, which differs from these you will have to write a plugin for them. The plugin will extend Instance->Building.
 
 [Admin Plugins]
 Due to the change, that half-static data will be put into

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<navigation>
+    <item id="1" name="news">
+        <table name="#era">1 2 3 4 5 6 7 8 9 10 11 12 13 14</table>
+        <set name="era" val="#stage"/>
+	<url>index.php?site=news</url>
+    </item>
+    <item id="2" name="statistics">
+       <table name="#era">1 2 3 4 5 6 7 8 9 10 11 12 13 14</table>
+       <set name="era" val="#stage"/>
+       <url>index.php?site=stats</url>
+    </item>
+    <item id="3" name="war">
+        <table name="#era">3 4 5 6 7 8 9 10 11 12 13 14</table>
+	<set name="era" val="#stage"/>
+	<url>index.php?site=war</url>
+    </item>
+</navigation>

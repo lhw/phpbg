@@ -23,6 +23,7 @@ $database['port'] = "3306";
 $database['user'] = "phpbg";
 $database['pass'] = "phpbg";
 $database['data'] = "phpbg";
+
 //===================-[Mailservice]
 /*
 *   type:
