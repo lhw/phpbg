@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eras>
+  <era id="1" name="stone age"></era>
+  <era id="2" name="copper age">
+    <depends type="research">10</depends>
+	<depends type="building" level="10">towncenter</depends>
+	<costs type="wood">5000</costs>
+	<costs type="gold">10000</costs>
+  </era>
+  <era id="3" name="bronze age">
+    <depends type="research">12</depends>
+	<depends type="building" level="20">towncenter</depends>
+	<costs type="wood">7500</costs>
+	<costs type="stone">5000</costs>
+	<costs type="gold">10000</costs>
+  </era>
+  <era id="4" name="iron age">
+    <depends type="building" level="30">towncenter</depends>
+	<costs type="gold">50000</costs>
+  </era>
+</eras>
