@@ -1,21 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <eras>
-  <era id="1" name="stone age"></era>
-  <era id="2" name="copper age">
-    <depends type="research">10</depends>
-	<depends type="building" level="10">towncenter</depends>
-	<costs type="wood">5000</costs>
-	<costs type="gold">10000</costs>
-  </era>
-  <era id="3" name="bronze age">
-    <depends type="research">12</depends>
-	<depends type="building" level="20">towncenter</depends>
-	<costs type="wood">7500</costs>
-	<costs type="stone">5000</costs>
-	<costs type="gold">10000</costs>
-  </era>
-  <era id="4" name="iron age">
-    <depends type="building" level="30">towncenter</depends>
-	<costs type="gold">50000</costs>
-  </era>
+	<era id="1" name="stone age"></era>
+	<era id="2" name="copper age">
+		<depends type="building" level="10">towncenter</depends>
+		<costs type="gold">10000</costs>
+		<costs type="wood">10000</costs>
+		<costs type="stone">10000</costs>
+		<costs type="food">10000</costs>
+	</era>
+	<era id="3" name="bronze age">
+		<depends type="building" level="25">towncenter</depends>
+		<costs type="gold">25000</costs>
+		<costs type="wood">25000</costs>
+		<costs type="stone">25000</costs>
+		<costs type="food">25000</costs>
+		</era>
+	<era id="4" name="iron age">
+		<depends type="building" level="50">towncenter</depends>
+		<costs type="gold">50000</costs>
+		<costs type="wood">50000</costs>
+		<costs type="stone">50000</costs>
+		<costs type="food">50000</costs>
+	</era>
+	<era id="5" name="antiquity">
+		<depends type="building" level="75">towncenter</depends>
+		<costs type="gold">75000</costs>
+		<costs type="wood">75000</costs>
+		<costs type="stone">75000</costs>
+		<costs type="food">75000</costs>
+		<costs type="iron">75000</costs>
+	</era>
+	<era id="6" name="dark age">
+		<depends type="building" level="100">towncenter</depends>
+		<costs type="gold">75000</costs>
+		<costs type="wood">75000</costs>
+		<costs type="stone">75000</costs>
+		<costs type="food">75000</costs>
+		<costs type="iron">75000</costs>
+	</era>
+	<era id="7" name="middle age">
+		<depends type="building" level="125">towncenter</depends>
+		<costs type="gold">100000</costs>
+		<costs type="wood">100000</costs>
+		<costs type="stone">100000</costs>
+		<costs type="food">100000</costs>
+		<costs type="iron">100000</costs>
+	</era>
+	<era id="8" name="renaissance">
+		<depends type="building" level="150">towncenter</depends>
+		<costs type="gold">125000</costs>
+		<costs type="wood">125000</costs>
+		<costs type="stone">125000</costs>
+		<costs type="food">125000</costs>
+		<costs type="iron">125000</costs>
+	</era>
+	<era id="9" name="industrialisation">
+		<depends type="building" level="175">towncenter</depends>
+		<costs type="gold">150000</costs>
+		<costs type="wood">150000</costs>
+		<costs type="stone">150000</costs>
+		<costs type="food">150000</costs>
+		<costs type="iron">150000</costs>
+	</era>
+	<era id="10" name="first world war">
+		<depends type="building" level="200">towncenter</depends>
+		<costs type="gold">175000</costs>
+		<costs type="wood">175000</costs>
+		<costs type="stone">175000</costs>
+		<costs type="food">175000</costs>
+		<costs type="iron">175000</costs>
+	</era>
+	<era id="11" name="second world war">
+		<depends type="building" level="225">towncenter</depends>
+		<costs type="gold">200000</costs>
+		<costs type="wood">200000</costs>
+		<costs type="stone">200000</costs>
+		<costs type="food">200000</costs>
+		<costs type="iron">200000</costs>
+		<costs type="oil">100000</costs>
+		<costs type="energy">100000</costs>
+	</era>
+	<era id="12" name="cold war">
+		<depends type="building" level="250">towncenter</depends>
+		<costs type="gold">225000</costs>
+		<costs type="wood">225000</costs>
+		<costs type="stone">225000</costs>
+		<costs type="food">225000</costs>
+		<costs type="iron">225000</costs>
+		<costs type="oil">150000</costs>
+		<costs type="energy">150000</costs>
+	</era>
+	<era id="13" name="cold war">
+		<depends type="building" level="275">towncenter</depends>
+		<costs type="gold">250000</costs>
+		<costs type="wood">250000</costs>
+		<costs type="stone">250000</costs>
+		<costs type="food">250000</costs>
+		<costs type="iron">250000</costs>
+		<costs type="oil">200000</costs>
+		<costs type="energy">200000</costs>
+	</era>
+	<era id="14" name="cold war">
+		<depends type="building" level="300">towncenter</depends>
+		<costs type="gold">300000</costs>
+		<costs type="wood">300000</costs>
+		<costs type="stone">300000</costs>
+		<costs type="food">300000</costs>
+		<costs type="iron">300000</costs>
+		<costs type="oil">250000</costs>
+		<costs type="energy">250000</costs>
+	</era>
 </eras>
