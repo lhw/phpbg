@@ -56,8 +56,6 @@ class log
 {
     const ERROR = 0;
     const WARNING = 1;
-    private $error = "log/error.log";
-    private $warning = "log/warning.log";
     /**
     *   Appends the logmessage to the log and terminates script execution on ERROR
     *   @param  string  $logmessage The logmessage to append
@@ -66,26 +64,18 @@ class log
     */
     public static function _append($logmessage, $level = WARNING)
     {
-        if($logmessage == null || !file_exists($logfile) || !$errorlog = fopen($this->error, "a") || !$warnlog = fopen($this->warning, "a"))
+        $db = new database();
+        $db->sql = "INSERT INTO log VALUES (0, ?, ?, ?, ?)"; # Id, date, level, nick, ip, message
+        $db->query(array(time(), $level, $nick, $SERVER['REMOTE_ADDR'], $logmessage));
+        switch($level)
         {
-            throw new Exception("Logmessage is empty or logfile is not writeable");
-        }
-        else
-        {
-            switch($level)
-            {
-                default:
-                case WARNING:
-                    fwrite($warnlog, date("d.m.Y H:i:s")."|".$SERVER["REMOTE_ADDR"]."|".$level."|".$logmessage);
-                    echo $logmessage;
-                    break;
-                case ERROR:
-                    fwrite($errorlog, date("d.m.Y H:i:s")."|".$SERVER["REMOTE_ADDR"]."|".$level."|".$logmessage);
-                    die($logmessage);
-                    break;
-            }
-            fclose($errorlog);
-            fclose($warnlog);
+            default:
+            case WARNING:
+                echo $logmessage;
+                break;
+            case ERROR:
+                die($logmessage);
+                break;
         }
     }
     /**
@@ -94,12 +84,9 @@ class log
     */
     public static function _purge()
     {
-        if(file_exists($this->error) && file_exists($this->warning))
-        {
-            unlink($this->error);
-            unlink($this->warning);
-        }
-        else throw new Exception("Logfile does not exist");
+    	$db = new database();
+	$db->sql "TRUNCATE TABLE log";
+	$db->query();
     }
 }
 ?>
