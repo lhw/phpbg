@@ -41,7 +41,7 @@
     </unit>
   </water>
   <air>
-    <unit id="1" name="Angriffsbomber">
+    <unit id="1" name="Attackbomber">
     </unit>
   </air>
 </units>
