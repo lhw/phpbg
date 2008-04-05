@@ -15,4 +15,9 @@
 	<set name="era" val="#stage"/>
 	<url>index.php?site=war</url>
     </item>
+    <item id="4" name="leave">
+        <table name="#era">1 2 3 4 5 6 7 8 9 10 11 12 13 14</table>
+	<set name="era" val="#stage"/>
+	<url>index.php?site=logout</url>
+    </item>
 </navigation>

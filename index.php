@@ -27,18 +27,39 @@ require("system/class.dba.php");
 require("system/class.template.php");
 require("system/class.mail.php");
 
+function get_navigation() {
+	$navi = array();
+	$xml = new XMLReader();
+	$xml->open("data/xml/navigation.xml");
+
+	while($xml->read()) {
+		if($xml->name == "item" && $xml->nodeType == XMLReader::ELEMENT) {
+			$name = $xml->getAttribute("name");
+			$url = "";
+			$show = true;
+		}
+		if($xml->name == "url" && $xml->nodeType == XMLReader::ELEMENT) {
+			$xml->read();
+			if($xml->nodeType == XMLReader::TEXT)
+				$url = $xml->value;
+		}
+		if($xml->name == "item" && $xml->nodeType == XMLReader::END_ELEMENT && $show == true)
+			$navi[] = array("link" => $url, "name" => $name);
+	}
+
+	return $navi;
+}
+
+$xml = new XMLReader();
 $index = new template();
 $nav = new template("navigation.tpl");
 $res = new template("ressources.tpl");
 $news = new template("news.tpl");
 $error = new template("error.tpl");
 
-$links = array(array("link" => "#", "name" => "Home"),
-               array("link" => "#", "name" => "Manage"),
-               array("link" => "#", "name" => "Leave"));
+$links = get_navigation();
 
 $reslist = array();
-$xml = new XMLReader();
 $xml->open("data/xml/ressources.xml");
 while($xml->read()) {
 	if($xml->name == "ressource" && $xml->nodeType == 1)
@@ -66,7 +87,7 @@ $index->_assign("title", "phpBG");
 $index->_assign("headline", "phpBG");
 $index->_assign("subtitle", "The Open-Source Browserengine");
 $index->_assign("navigation", $nav);
-$index->_assign("error", $error);
+//$index->_assign("error", $error);
 $index->_assign("options", $res);
 $index->_assign("content", $news);
 
