@@ -20,12 +20,13 @@
  *   GNU General Public License for more details.
  *
  ***************************************************************************/
- 
-require("system/class.instance.php");
+
+require("system/class.auth.php");
 require("system/class.base.php");
 require("system/class.dba.php");
-require("system/class.template.php");
+require("system/class.instance.php");
 require("system/class.mail.php");
+require("system/class.template.php");
 
 function get_navigation() {
 	$navi = array();
@@ -47,50 +48,61 @@ function get_navigation() {
 			$navi[] = array("link" => $url, "name" => $name);
 	}
 
+	$xml->close();
 	return $navi;
 }
 
-$xml = new XMLReader();
-$index = new template();
-$nav = new template("navigation.tpl");
-$res = new template("ressources.tpl");
-$news = new template("news.tpl");
-$error = new template("error.tpl");
+function get_ressources() {
+	$ressources = array();
 
-$links = get_navigation();
+	$xml = new XMLReader();
+	$xml->open("data/xml/ressources.xml");
+	while($xml->read()) {
+		if($xml->name == "ressource" && $xml->nodeType == XMLReader::ELEMENT)
+			$ressources[$xml->getAttribute("name")] = 1000;
+	}
 
-$reslist = array();
-$xml->open("data/xml/ressources.xml");
-while($xml->read()) {
-	if($xml->name == "ressource" && $xml->nodeType == 1)
-		$reslist[$xml->getAttribute("name")] = 1000;
+	$xml->close();
+	return $ressources;
 }
-$xml->close();
 
-$newslist = array(array("title" => "Lorem ipsum dolor sit amet, consectetuer ", "text" => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi."),
-                  array("title" => "Lorem ipsum dolor sit amet, consectetuer ", "text" => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi."),
-                  array("title" => "Lorem ipsum dolor sit amet, consectetuer ", "text" => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi."),
-                  array("title" => "Lorem ipsum dolor sit amet, consectetuer ", "text" => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi."),
-                  array("title" => "Lorem ipsum dolor sit amet, consectetuer ", "text" => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi."),
-                  array("title" => "Lorem ipsum dolor sit amet, consectetuer ", "text" => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi."),
-                  array("title" => "Lorem ipsum dolor sit amet, consectetuer ", "text" => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi."),
-                  array("title" => "Lorem ipsum dolor sit amet, consectetuer ", "text" => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi."));
+$auth = new auth();
 
-$news->_assign("newslist", $newslist);
-$nav->_assign("menu", "Navigation");
-$nav->_assign("items", $links);
-$res->_assign("res", $reslist);
-$error->_assign("message", "Blablub");
+if($auth->status == "") {
+	$index = new template();
+	$index->_assign("headline", "phpBG");
+	$index->_assign("title", "phpBG");
+	$index->_assign("subtitle", "The Open-Source Browserengine");
+	$index->_assign("lang", "en");
+} else {
+	$index = new template();
+	$nav = new template("navigation.tpl");
+	$res = new template("ressources.tpl");
+	$news = new template("news.tpl");
+	$error = new template("error.tpl");
 
-$index->_assign("lang", "en");
-$index->_assign("title", "phpBG");
-$index->_assign("headline", "phpBG");
-$index->_assign("subtitle", "The Open-Source Browserengine");
-$index->_assign("navigation", $nav);
-//$index->_assign("error", $error);
-$index->_assign("options", $res);
-$index->_assign("content", $news);
+	$links = get_navigation();
+	$reslist = get_ressources();
+
+	$newslist = array();
+	for($i=0;$i<10;$i++)
+		$newslist[] = array("title" => "Lorem ipsum dolor sit amet, consectetuer ", "text" => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.");
+	
+	$news->_assign("newslist", $newslist);
+	$nav->_assign("menu", "Navigation");
+	$nav->_assign("items", $links);
+	$res->_assign("res", $reslist);
+	$error->_assign("message", "Some Error Message...");
+
+	$index->_assign("error", $error);
+	$index->_assign("lang", "en");
+	$index->_assign("title", "phpBG");
+	$index->_assign("headline", "phpBG");
+	$index->_assign("subtitle", "The Open-Source Browserengine");
+	$index->_assign("navigation", $nav);
+	$index->_assign("options", $res);
+	$index->_assign("content", $news);
+}
 
 echo $index->_show();
-
 ?>

@@ -2,7 +2,7 @@
 /***************************************************************************
  *                           system/class.auth.php
  *                            -------------------
- *     begin                : 04-02-2008
+ *     begin                : 04-04-2008
  *     copyright            : (c) 2008 The phpBG Team
  *     email                : phpbg@gmail.com
  *
@@ -169,6 +169,15 @@ class auth
                 return $en->_ccrypt("$user:$pass");
                 break;
         }
+    }
+
+    /**
+	*    Returns the username of the logged in user or an empty string if no user is logged in
+	*    @return string The username.
+	*/
+    public function status()
+    {
+		return isset($_SESSION['username']) ? $_SESSION['username'] : "";
     }
 }
 ?>
