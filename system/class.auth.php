@@ -41,7 +41,7 @@ class auth
                 session_start();
                 $_SESSION['LoggedIn'] = true;
                 $_SESSION['username'] = $username;
-                $_SESSION['accesslevel'] = $db->result[0][0];
+                $_SESSION['access'] = $db->result[0][0];
             }
             else log::_append("You are banned from the server", log::WARNING);
         }

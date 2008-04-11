@@ -56,11 +56,11 @@ class iface
         foreach($xml->ressource as $item)
         {
             $era = explode(" ", (string)$item->era);
-            if(in_array($usersess['era'], $era) && $usersess['access'] > 0)
+            if(in_array($usersess['player']['era'], $era) && $usersess['access'] > 0)
             {
                 $attr = $item->attributes();
                 $content[] = array("name" => $this->_translation("RESSOURCE_".(string)$attr['name'],$usersess['lang']),
-                                   "count" => ($usersess['res'][(string)$attr['name']] == null) ? 0 : $usersess['res'][(string)$attr['name']]);
+                                   "count" => ($usersess['player']['res'][(string)$attr['name']] == null) ? 0 : $usersess['player']['res'][(string)$attr['name']]);
             }
         }
         return $content;

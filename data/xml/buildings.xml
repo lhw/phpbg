@@ -2,8 +2,7 @@
 <buildings>
     <building id="1" name="lumbercamp" type="ressource-production">
 	<img>data/img/buildings/lumbercamp.png</img>
-        <table name="#era">1 2 3 4 5 6 7 8 9 10 11 12 13 14</table>
-        <set name="era" val="#stage"/>
+        <era>1 2 3 4 5 6 7 8 9 10 11 12 13 14</era>
 	<costs name="wood">2000</costs>
 	<costs name="stone">2500</costs>
 	<produces name="wood">1200</produces>
@@ -12,8 +11,7 @@
     </building>
     <building id="2" name="wood deposit" type="deposit">
         <img>data/img/buildings/wood_deposit.png</img>
-	<table name="#era">1 2 3 4 5 6 7 8 9 10 11 12 13 14</table>
-	<set name="era" val="#stage"/>
+	<era>1 2 3 4 5 6 7 8 9 10 11 12 13 14</era>
 	<costs name="wood">5000</costs>
 	<costs name="stone">5000</costs>
 	<saves name="wood">10000</saves>
@@ -22,8 +20,7 @@
     </building>
     <building id="3" name="hospital">
         <type>special</type>
-        <table name="#era">1 2 3 4 5 6 7 8 9 10 11 12 13 14</table>
-        <set name="era" val="#stage"/>
+        <era>1 2 3 4 5 6 7 8 9 10 11 12 13 14</era>
         <health>2100</health>
     </building>
 </buildings>

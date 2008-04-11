@@ -117,3 +117,16 @@ reputation. You will gain reputation points when you defend yourself against
 an other player successfully or if you attack an player, which has more power
 than you. But if you attack an player which has less points than you, your
 reputation will decrease.
+
+[Sessionhandler]
+$_SESSION   - access (0 = not logged in,1 = normal user, 2 = vip, 3 = administrator)
+            - LoggedIn (true or false)
+            - username
+            - lang (2 chars languagecode [e.g. de, en, fr])
+            - player
+                - era (1-x)
+                - res
+                    - <ressource> - <amount>
+                ...
+            ...
+            
