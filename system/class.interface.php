@@ -32,7 +32,6 @@ class iface
     {
 	$xml = new SimpleXMLElement("data/xml/navigation.xml", NULL, true);
         if($usersess['access'] == null) $usersess['access'] = 0;
-        if($usersess['lang'] == null) $usersess['lang'] = "en";
 	foreach($xml->item as $item)
 	{
             $level = explode(" ",(string)$item->level);
@@ -54,11 +53,10 @@ class iface
     public function _ressources(array $usersess)
     {
         $xml = new SimpleXMLElement("data/xml/ressources.xml", NULL, true);
-        if($usersess['lang'] == null) $usersess['lang'] = "en";
         foreach($xml->ressource as $item)
         {
             $era = explode(" ", (string)$item->era);
-            if(in_array($usersess['era'], $era))
+            if(in_array($usersess['era'], $era) && $usersess['access'] > 0)
             {
                 $attr = $item->attributes();
                 $content[] = array("name" => $this->_translation("RESSOURCE_".(string)$attr['name'],$usersess['lang']),
@@ -78,6 +76,7 @@ class iface
     {
         $xml = new SimpleXMLElement("data/xml/translations.xml", NULL, true);
         if(is_object($text)) $text = strval($text);
+	if($lang == null) $lang = "en"; 
         if(is_string($text))
         {
             $text = strtoupper($text);
