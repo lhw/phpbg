@@ -66,7 +66,7 @@ class log
     {
         $db = new database();
         $db->sql = "INSERT INTO log VALUES (0, ?, ?, ?, ?)"; # Id, date, level, nick, ip, message
-        $db->query(array(time(), $level, $nick, $SERVER['REMOTE_ADDR'], $logmessage));
+        $db->_query(array(time(), $level, $nick, $SERVER['REMOTE_ADDR'], $logmessage));
         switch($level)
         {
             default:

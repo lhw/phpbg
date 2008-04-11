@@ -5,27 +5,27 @@
         <de>Holz</de>
     </trans>
     <trans id="2" name="RESSOURCE_GOLD">
-        <en>gold</en>
+        <en>Gold</en>
 	<de>Gold</de>
     </trans>
     <trans id="3" name="RESSOURCE_STONE">
-        <en>stone</en>
+        <en>Stone</en>
 	<de>Stein</de>
     </trans>
     <trans id="4" name="RESSOURCE_FOOD">
-        <en>food</en>
+        <en>Food</en>
 	<de>Nahrung</de>
     </trans>
     <trans id="5" name="RESSOURCE_IRON">
-        <en>iron</en>
+        <en>Iron</en>
 	<de>Eisen</de>
     </trans>
     <trans id="6" name="RESSOURCE_OIL">
-        <en>oil</en>
-	<de>Öl</de>
+        <en>Oil</en>
+	<de>Oel</de>
     </trans>
     <trans id="7" name="RESSOURCE_ENERGY">
-        <en>energy</en>
+        <en>Energy</en>
 	<de>Energie</de>
     </trans>
     <trans id="8" name="NOT_ENOUGH_S">
@@ -35,5 +35,25 @@
     <trans id="9" name="YOU_ARE_MISSING_U_UNITS_OF_S">
         <en>You are missing %u units of %s</en>
 	<de>Dir fehlen %u Einheiten %s</de>
+    </trans>
+    <trans id="10" name="NAV_NEWS">
+        <en>News</en>
+        <de>Neuigkeiten</de>
+    </trans>
+    <trans id="11" name="NAV_STATISTICS">
+        <en>Statistics</en>
+        <de>Statistiken</de>
+    </trans>
+    <trans id="12" name="NAV_WAR">
+        <en>Warcontrol</en>
+        <de>Kriegsstatus</de>
+    </trans>
+    <trans id="13" name="NAV_LOGIN">
+        <en>Login</en>
+        <de>Anmelden</de>
+    </trans>
+    <trans id="14" name="NAV_LOGOUT">
+        <en>Logout</en>
+        <de>Abmelden</de>
     </trans>
 </translation>

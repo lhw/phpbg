@@ -1,6 +1,6 @@
-<h3><?=$menu;?></h3>
+<h3>Navigation</h3>
         <ul>
         <? foreach($items as $item): ?>
-            <li><a href="<?=$item['link'];?>"><?=$item['name'];?></a></li>
+            <li><a href="<?=$item['url'];?>"><?=$item['name'];?></a></li>
         <? endforeach; ?>
         </ul>

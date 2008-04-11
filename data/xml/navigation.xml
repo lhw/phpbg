@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <navigation>
     <item id="1" name="news">
-        <table name="#era">1 2 3 4 5 6 7 8 9 10 11 12 13 14</table>
-        <set name="era" val="#stage"/>
 	<url>index.php?site=news</url>
+	<level>0 1</level>
     </item>
     <item id="2" name="statistics">
-       <table name="#era">1 2 3 4 5 6 7 8 9 10 11 12 13 14</table>
-       <set name="era" val="#stage"/>
        <url>index.php?site=stats</url>
+       <level>1</level>
     </item>
     <item id="3" name="war">
-        <table name="#era">3 4 5 6 7 8 9 10 11 12 13 14</table>
-	<set name="era" val="#stage"/>
 	<url>index.php?site=war</url>
+	<level>1</level>
     </item>
-    <item id="4" name="leave">
-        <table name="#era">1 2 3 4 5 6 7 8 9 10 11 12 13 14</table>
-	<set name="era" val="#stage"/>
+    <item id="4" name="login">
+	<url>index.php?site=login</url>
+	<level>0</level>
+    </item>
+    <item id="5" name="logout">
 	<url>index.php?site=logout</url>
+	<level>1</level>
     </item>
 </navigation>

@@ -20,81 +20,41 @@
  *   GNU General Public License for more details.
  *
  ***************************************************************************/
+session_start();
 
 require("system/class.auth.php");
 require("system/class.base.php");
 require("system/class.dba.php");
 require("system/class.instance.php");
 require("system/class.mail.php");
+require("system/class.interface.php");
 require("system/class.template.php");
-
-function get_navigation() {
-	$navi = array();
-	$xml = new XMLReader();
-	$xml->open("data/xml/navigation.xml");
-
-	while($xml->read()) {
-		if($xml->name == "item" && $xml->nodeType == XMLReader::ELEMENT) {
-			$name = $xml->getAttribute("name");
-			$url = "";
-			$show = true;
-		}
-		if($xml->name == "url" && $xml->nodeType == XMLReader::ELEMENT) {
-			$xml->read();
-			if($xml->nodeType == XMLReader::TEXT)
-				$url = $xml->value;
-		}
-		if($xml->name == "item" && $xml->nodeType == XMLReader::END_ELEMENT && $show == true)
-			$navi[] = array("link" => $url, "name" => $name);
-	}
-
-	$xml->close();
-	return $navi;
-}
-
-function get_ressources() {
-	$ressources = array();
-
-	$xml = new XMLReader();
-	$xml->open("data/xml/ressources.xml");
-	while($xml->read()) {
-		if($xml->name == "ressource" && $xml->nodeType == XMLReader::ELEMENT)
-			$ressources[$xml->getAttribute("name")] = 1000;
-	}
-
-	$xml->close();
-	return $ressources;
-}
-
-$auth = new auth();
-
-if($auth->status == "") {
 	$index = new template();
+	$iface = new iface();
 	$index->_assign("headline", "phpBG");
 	$index->_assign("title", "phpBG");
 	$index->_assign("subtitle", "The Open-Source Browserengine");
 	$index->_assign("lang", "en");
-} else {
 	$index = new template();
 	$nav = new template("navigation.tpl");
 	$res = new template("ressources.tpl");
 	$news = new template("news.tpl");
-	$error = new template("error.tpl");
 
-	$links = get_navigation();
-	$reslist = get_ressources();
-
-	$newslist = array();
 	for($i=0;$i<10;$i++)
 		$newslist[] = array("title" => "Lorem ipsum dolor sit amet, consectetuer ", "text" => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.");
-	
+	$usersess = array("access" => 1,
+			  "era" => 10,
+			  "lang" => "de",
+			  "res" =>array("gold" => 1000,
+					"stone" => 1000,
+					"wood" => 1000,
+					"food" => 1000,
+					"iron" => 1000,
+					"oil" => 1000,
+					"energy" => 1000));
 	$news->_assign("newslist", $newslist);
-	$nav->_assign("menu", "Navigation");
-	$nav->_assign("items", $links);
-	$res->_assign("res", $reslist);
-	$error->_assign("message", "Some Error Message...");
-
-	$index->_assign("error", $error);
+	$nav->_assign("items", $iface->_navigation($usersess));
+	$res->_assign("ressource", $iface->_ressources($usersess));
 	$index->_assign("lang", "en");
 	$index->_assign("title", "phpBG");
 	$index->_assign("headline", "phpBG");
@@ -102,7 +62,5 @@ if($auth->status == "") {
 	$index->_assign("navigation", $nav);
 	$index->_assign("options", $res);
 	$index->_assign("content", $news);
-}
-
-echo $index->_show();
+	echo $index->_show();
 ?>
