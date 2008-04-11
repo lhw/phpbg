@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <navigation>
-    <item id="1" name="news">
-	<url>index.php?site=news</url>
-	<level>0 1</level>
-    </item>
-    <item id="2" name="statistics">
+	<item id="1" name="news">
+		<url>index.php?site=news</url>
+		<level>0 1</level>
+	</item>
+	<item id="2" name="statistics">
        <url>index.php?site=stats</url>
        <level>1</level>
-    </item>
-    <item id="3" name="war">
-	<url>index.php?site=war</url>
-	<level>1</level>
-    </item>
-    <item id="4" name="login">
-	<url>index.php?site=login</url>
-	<level>0</level>
-    </item>
-    <item id="5" name="logout">
-	<url>index.php?site=logout</url>
-	<level>1</level>
-    </item>
+	</item>
+	<item id="3" name="war">
+		<url>index.php?site=war</url>
+		<level>1</level>
+	</item>
+	<item id="4" name="login">
+		<url>index.php?site=login</url>
+		<level>0</level>
+	</item>
+	<item id="5" name="logout">
+		<url>index.php?site=logout</url>
+		<level>1</level>
+	</item>
 </navigation>
