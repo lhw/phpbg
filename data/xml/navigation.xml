@@ -5,8 +5,8 @@
 		<level>0 1</level>
 	</item>
 	<item id="2" name="statistics">
-       <url>index.php?site=stats</url>
-       <level>1</level>
+		<url>index.php?site=stats</url>
+		<level>1</level>
 	</item>
 	<item id="3" name="war">
 		<url>index.php?site=war</url>

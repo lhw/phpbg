@@ -1,6 +1,6 @@
 [authors]
-Developer        - Lennart Weller (cyfreeze)
-Developer        - Sebastian Reichel (elektranox)
+Developer		- Lennart Weller (cyfreeze)
+Developer		- Sebastian Reichel (elektranox)
 Graphic Designer - ${Graphic_Designer}
 
 [license]
@@ -9,18 +9,18 @@ Graphic Designer - ${Graphic_Designer}
 	Copyright (C) 2008 Lennart Weller
 	Copyright (C) 2008 ${Graphic_Designer}
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+	This program is free software: you can redistribute it and/or modify
+	it under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+	This program is distributed in the hope that it will be useful,
+	but WITHOUT ANY WARRANTY; without even the implied warranty of
+	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+	You should have received a copy of the GNU General Public License
+	along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 [new in this version]
 	* object based
@@ -95,10 +95,10 @@ area. The new admin area is supposed to change the navigation completly.
 Similar like this:
 
 +------------------------------+		+-------------------------+
-| back to Player View          |		| News                    |
-| Clan Configuration           |		| Statistics              |
-| User Configuration           |		| ...                     |
-| ...                          |		| Admin Panel             |
+| back to Player View		  |		| News					|
+| Clan Configuration		   |		| Statistics			  |
+| User Configuration		   |		| ...					 |
+| ...						  |		| Admin Panel			 |
 +------------------------------+		+-------------------------+
 
 [Home Text]
@@ -120,13 +120,13 @@ reputation will decrease.
 
 [Sessionhandler]
 $_SESSION   - access (0 = not logged in,1 = normal user, 2 = vip, 3 = administrator)
-            - LoggedIn (true or false)
-            - username
-            - lang (2 chars languagecode [e.g. de, en, fr])
-            - player
-                - era (1-x)
-                - res
-                    - <ressource> - <amount>
-                ...
-            ...
-            
+			- LoggedIn (true or false)
+			- username
+			- lang (2 chars languagecode [e.g. de, en, fr])
+			- player
+				- era (1-x)
+				- res
+					- <ressource> - <amount>
+				...
+			...
+			

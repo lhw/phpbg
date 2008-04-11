@@ -1,10 +1,10 @@
 <?
 /***************************************************************************
- *                           system/class.mail.php
- *                            -------------------
- *     begin                : 03-29-2008
- *     copyright            : (c) 2008 The phpBG Team
- *     email                : phpbg@gmail.com
+ *						   system/class.mail.php
+ *							-------------------
+ *	 begin				: 03-29-2008
+ *	 copyright			: (c) 2008 The phpBG Team
+ *	 email				: phpbg@gmail.com
  *
  ****************************************************************************/
 

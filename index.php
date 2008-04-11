@@ -1,10 +1,10 @@
 <?php
 /***************************************************************************
- *                                 index.php
- *                            -------------------
- *     begin                : 03-29-2008
- *     copyright            : (c) 2008 The phpBG Team
- *     email                : phpbg@gmail.com
+ *								 index.php
+ *							-------------------
+ *	 begin				: 03-29-2008
+ *	 copyright			: (c) 2008 The phpBG Team
+ *	 email				: phpbg@gmail.com
  *
  ****************************************************************************/
 
@@ -47,14 +47,14 @@ require("system/class.template.php");
 			  "access" => 1,
 			  "lang" => "de",
 			  "player" => array("era" => 13,
-					    "res" => array("gold" => 1000,
-							   "stone" => 1000,
-							   "wood" => 1000,
-							   "food" => 1000,
-							   "iron" => 1000,
-							   "oil" => 1000,
-							   "energy" => 1000)
-					    )
+						"res" => array("gold" => 1000,
+										"stone" => 1000,
+										"wood" => 1000,
+										"food" => 1000,
+										"iron" => 1000,
+										"oil" => 1000,
+										"energy" => 1000)
+								)
 			  
 			);
 	$news->_assign("newslist", $newslist);

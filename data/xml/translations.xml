@@ -1,59 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <translation>
-    <trans id="1" name="RESSOURCE_WOOD">
-        <en>wood</en>
-        <de>Holz</de>
-    </trans>
-    <trans id="2" name="RESSOURCE_GOLD">
-        <en>Gold</en>
-	<de>Gold</de>
-    </trans>
-    <trans id="3" name="RESSOURCE_STONE">
-        <en>Stone</en>
-	<de>Stein</de>
-    </trans>
-    <trans id="4" name="RESSOURCE_FOOD">
-        <en>Food</en>
-	<de>Nahrung</de>
-    </trans>
-    <trans id="5" name="RESSOURCE_IRON">
-        <en>Iron</en>
-	<de>Eisen</de>
-    </trans>
-    <trans id="6" name="RESSOURCE_OIL">
-        <en>Oil</en>
-	<de>Öl</de>
-    </trans>
-    <trans id="7" name="RESSOURCE_ENERGY">
-        <en>Energy</en>
-	<de>Energie</de>
-    </trans>
-    <trans id="8" name="NOT_ENOUGH_S">
-        <en>Not enough %s</en>
-	<de>Nicht genug %s</de>
-    </trans>
-    <trans id="9" name="YOU_ARE_MISSING_U_UNITS_OF_S">
-        <en>You are missing %u units of %s</en>
-	<de>Dir fehlen %u Einheiten %s</de>
-    </trans>
-    <trans id="10" name="NAV_NEWS">
-        <en>News</en>
-        <de>Neuigkeiten</de>
-    </trans>
-    <trans id="11" name="NAV_STATISTICS">
-        <en>Statistics</en>
-        <de>Statistiken</de>
-    </trans>
-    <trans id="12" name="NAV_WAR">
-        <en>Warcontrol</en>
-        <de>Kriegsstatus</de>
-    </trans>
-    <trans id="13" name="NAV_LOGIN">
-        <en>Login</en>
-        <de>Anmelden</de>
-    </trans>
-    <trans id="14" name="NAV_LOGOUT">
-        <en>Logout</en>
-        <de>Abmelden</de>
-    </trans>
+	<trans id="1" name="RESSOURCE_WOOD">
+		<en>wood</en>
+		<de>Holz</de>
+	</trans>
+	<trans id="2" name="RESSOURCE_GOLD">
+		<en>Gold</en>
+		<de>Gold</de>
+	</trans>
+	<trans id="3" name="RESSOURCE_STONE">
+		<en>Stone</en>
+		<de>Stein</de>
+	</trans>
+	<trans id="4" name="RESSOURCE_FOOD">
+		<en>Food</en>
+		<de>Nahrung</de>
+	</trans>
+	<trans id="5" name="RESSOURCE_IRON">
+		<en>Iron</en>
+		<de>Eisen</de>
+	</trans>
+	<trans id="6" name="RESSOURCE_OIL">
+		<en>Oil</en>
+		<de>Öl</de>
+	</trans>
+	<trans id="7" name="RESSOURCE_ENERGY">
+		<en>Energy</en>
+		<de>Energie</de>
+	</trans>
+	<trans id="8" name="NOT_ENOUGH_S">
+		<en>Not enough %s</en>
+		<de>Nicht genug %s</de>
+	</trans>
+	<trans id="9" name="YOU_ARE_MISSING_U_UNITS_OF_S">
+		<en>You are missing %u units of %s</en>
+		<de>Dir fehlen %u Einheiten %s</de>
+	</trans>
+	<trans id="10" name="NAV_NEWS">
+		<en>News</en>
+		<de>Neuigkeiten</de>
+	</trans>
+	<trans id="11" name="NAV_STATISTICS">
+		<en>Statistics</en>
+		<de>Statistiken</de>
+	</trans>
+	<trans id="12" name="NAV_WAR">
+		<en>Warcontrol</en>
+		<de>Kriegsstatus</de>
+	</trans>
+	<trans id="13" name="NAV_LOGIN">
+		<en>Login</en>
+		<de>Anmelden</de>
+	</trans>
+	<trans id="14" name="NAV_LOGOUT">
+		<en>Logout</en>
+		<de>Abmelden</de>
+	</trans>
 </translation>
