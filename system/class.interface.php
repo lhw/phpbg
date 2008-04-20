@@ -20,25 +20,21 @@
  *   GNU General Public License for more details.
  *
  ***************************************************************************/
-class iface
-{
+class iface {
 	/**
 	*	Displays all avaiable Menuentries
 	*	@param  array   $usersess   The Session of the current user
 	*	@return array   The Menuentries as [name, link]
 	*	@access public
 	*/
-	public function _navigation(array $usersess)
-	{
+	public function _navigation(array $usersess) {
 		$xml = new SimpleXMLElement("data/xml/navigation.xml", NULL, true);
 		if($usersess['access'] == null) $usersess['access'] = 0;
-		foreach($xml->item as $item)
-		{
+		foreach($xml->item as $item) {
 			$level = explode(" ",(string)$item->level);
-			if(in_array($usersess['access'], $level))
-			{
+			if(in_array($usersess['access'], $level)) {
 				$attr = $item->attributes();
-				$content[] = array("name" => $this->_translation("NAV_".$attr['name'],$usersess['lang']),
+				$content[] = array("name" => $this->_translation("NAV_".$attr['name']),
 									"url" => (string)$item->url);
 			}
 		}
@@ -50,46 +46,44 @@ class iface
 	*	@return array   The ressourcelist [ressourcename, count]
 	*	@access public
 	*/
-	public function _ressources(array $usersess)
-	{
+	public function _ressources(array $usersess) {
 		$xml = new SimpleXMLElement("data/xml/ressources.xml", NULL, true);
-		foreach($xml->ressource as $item)
-		{
+		foreach($xml->ressource as $item) {
 			$era = explode(" ", (string)$item->era);
-			if(in_array($usersess['player']['era'], $era) && $usersess['access'] > 0)
-			{
+			if(in_array($usersess['player']['era'], $era) && $usersess['access'] > 0) {
 				$attr = $item->attributes();
-				$content[] = array("name" => $this->_translation("RESSOURCE_".(string)$attr['name'],$usersess['lang']),
+				$content[] = array("name" => $this->_translation("RESSOURCE_".(string)$attr['name']),
 									"count" => ($usersess['player']['res'][(string)$attr['name']] == null) ? 0 : $usersess['player']['res'][(string)$attr['name']]);
 			}
 		}
 		return $content;
 	}
 	/**
-	*	Shows the translation for the input
+	*	Shows the translation for the input. Automatically greps the language from the browser
 	*	@param $text    mixed   Either the correspondening name or the id
-	*	@param $lang    string  The two chars long language identifier (e.g. en or de)
 	*	@return string The translated text
 	*	@access public
 	*/
-	public function _translation($text, $lang = "en")
-	{
+	public function _translation($text) {
 		$xml = new SimpleXMLElement("data/xml/translations.xml", NULL, true);
 		if(is_object($text)) $text = strval($text);
-		if($lang == null) $lang = "en"; 
-		if(is_string($text))
-		{
+		$language = explode(",",$_SERVER["HTTP_ACCEPT_LANGUAGE"]);
+		$language = substr($language[1], 0, 2);
+		for($i = 0; $i <= count($xml->avaiable->language); $i++) {
+			$avaiable[] = (string)$xml->avaiable->language[$i];
+		}
+		if(in_array($language, $avaiable)) $lang = $language;
+		else $lang = "en";
+
+		if(is_string($text)) {
 			$text = strtoupper($text);
-			foreach($xml->trans as $item)
-			{
+			foreach($xml->trans as $item) {
 				$attr = $item->attributes();
 				if($attr['name'] == $text) $output[] = (string)$item->$lang;
 			}
 		}
-		elseif(is_int($text))
-		{
-			foreach($xml->trans as $item)
-			{
+		elseif(is_int($text)) {
+			foreach($xml->trans as $item) {
 				$attr = $item->attributes();
 				if($attr['id'] == $text) $output[] = (string)$item->$lang;
 			}

@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <translation>
+	<!-- The avaiable translations  -->
+	<avaiable>
+		<language>en</language>
+		<language>de</language>
+	</avaiable>
+	<!-- The Start of the translations  -->
 	<trans id="1" name="RESSOURCE_WOOD">
-		<en>wood</en>
+		<en>Wood</en>
 		<de>Holz</de>
 	</trans>
 	<trans id="2" name="RESSOURCE_GOLD">

@@ -46,16 +46,15 @@ require("system/class.template.php");
 			  "username" => "VIA",
 			  "access" => 1,
 			  "lang" => "de",
-			  "player" => array("era" => 13,
-						"res" => array("gold" => 1000,
-										"stone" => 1000,
-										"wood" => 1000,
-										"food" => 1000,
-										"iron" => 1000,
-										"oil" => 1000,
-										"energy" => 1000)
-								)
-			  
+			  "player" => array(	"era" => 13,
+						"res" => array(	"gold" => 1000,
+								"stone" => 1000,
+								"wood" => 1000,
+								"food" => 1000,
+								"iron" => 1000,
+								"oil" => 1000,
+								"energy" => 1000)
+					) 
 			);
 	$news->_assign("newslist", $newslist);
 	$nav->_assign("items", $iface->_navigation($usersess));
