@@ -21,50 +21,40 @@
  *
  ***************************************************************************/
 session_start();
+include("system/class.auth.php"); 
+include("system/class.base.php");
+include("system/class.dba.php");  
+include("system/class.instance.php");  
+include("system/class.interface.php");
+include("system/class.mail.php");
+include("system/class.template.php");
 
-require("system/class.auth.php");
-require("system/class.base.php");
-require("system/class.dba.php");
-require("system/class.instance.php");
-require("system/class.mail.php");
-require("system/class.interface.php");
-require("system/class.template.php");
-	$index = new template();
-	$iface = new iface();
-	$index->_assign("headline", "phpBG");
-	$index->_assign("title", "phpBG");
-	$index->_assign("subtitle", "The Open-Source Browserengine");
-	$index->_assign("lang", "en");
-	$index = new template();
-	$nav = new template("navigation.tpl");
-	$res = new template("ressources.tpl");
-	$news = new template("news.tpl");
+$index = new template("index.tpl");
+$nav = new template("navigation.tpl");
+$res = new template("ressources.tpl");
+$iface = new iface();
 
-	for($i=0;$i<10;$i++)
-		$newslist[] = array("title" => "Lorem ipsum dolor sit amet, consectetuer ", "text" => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et accumsan et iusto odio dignissim qui blandit praesent luptatum zzril delenit augue duis dolore te feugait nulla facilisi.");
-	$usersess = array("LoggedIn" => true,
-			  "username" => "VIA",
-			  "access" => 1,
-			  "lang" => "de",
-			  "player" => array(	"era" => 13,
-						"res" => array(	"gold" => 1000,
-								"stone" => 1000,
-								"wood" => 1000,
-								"food" => 1000,
-								"iron" => 1000,
-								"oil" => 1000,
-								"energy" => 1000)
-					) 
-			);
-	$news->_assign("newslist", $newslist);
-	$nav->_assign("items", $iface->_navigation($usersess));
-	$res->_assign("ressource", $iface->_ressources($usersess));
-	$index->_assign("lang", "en");
-	$index->_assign("title", "phpBG");
-	$index->_assign("headline", "phpBG");
-	$index->_assign("subtitle", "The Open-Source Browserengine");
-	$index->_assign("navigation", $nav);
-	$index->_assign("options", $res);
-	$index->_assign("content", $news);
-	echo $index->_show();
-?>
+$index->_assign("headline","phpBG");
+$index->_assign("title", "phpBG");
+$index->_assign("subtitle", "The Open-Source Browserengine");
+$index->_assign("lang", iface::_userlanguage());
+$nav->_assign("items",$iface->_navigation());
+$index->_assign("navigation", $nav);
+
+switch($_GET['a'])
+{
+	default:
+	case "news":
+		for($i=0;$i<10;$i++)
+		        $fakes[] = array("title" => "Lorem ipsum dolor sit amet, consectetuer ", "text" => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euis");
+		$news = new template("news.tpl");
+		$news->_assign("newslist", $fakes);
+		$index->_assign("content", $news);
+		echo $index->_show();
+		break;
+	case "login":
+		$login = new template("login.tpl");
+		$index->_assign("content", $login);
+		echo $index->_show();
+		break;
+}

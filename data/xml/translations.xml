@@ -62,4 +62,60 @@
 		<en>Logout</en>
 		<de>Abmelden</de>
 	</trans>
+	<trans id="15" name="LOGINNAME">
+		<en>Login</en>
+		<de>Benutzername</de>
+	</trans>
+	<trans id="16" name="PASSWORD">
+		<en>Password</en>
+		<de>Passwort</de>
+	</trans>
+	<trans id="17" name="SEND">
+		<en>Send</en>
+		<de>Abschicken</de>
+	</trans>
+	<trans id="18" name="STONE_AGE">
+		<en>Stone Age</en>
+		<de>Steinzeit</de>
+	</trans>
+	<trans id="19" name="COPPER_AGE">
+		<en>Copper Age</en>
+		<de>Kupferzeit</de>
+	</trans>
+	<trans id="20" name="BRONZE_AGE">
+		<en>Bronze Age</en>
+		<de>Bronzezeit</de>
+	</trans>
+	<trans id="21" name="IRON_AGE">
+		<en>Iron Age</en>
+		<de>Eisenzeit</de>
+	</trans>
+	<trans id="22" name="DARK_AGE">
+		<en>Dark Age</en>
+		<de>Dunkles Mittelalter</de>
+	</trans>
+	<trans id="23" name="MIDDLE_AGE">
+		<en>Middle Age</en>
+		<de>Mittelalter</de>
+	</trans>
+	<trans id="24" name="RENAISSANCE">
+		<en>Renaissance</en>
+		<de>Renaissance</de>
+	</trans>
+	<trans id="25" name="INDUSTRIAL_AGE">
+		<en>Industrial Age</en>
+		<de>Industriezeitalter</de>
+	</trans>
+	<trans id="26" name="WWI">
+		<en>World War I</en>
+		<de>Erster Weltkrieg</de>
+	</trans>
+	<trans id="27" name="WWII">
+		<en>World War II</en>
+		<de>Zweiter Weltkrieg</de>
+	</trans>
+	<trans id="28" name="COLD_WAR">
+		<en>Cold War</en>
+		<de>Kalter Krieg</de>
+	</trans>
 </translation>

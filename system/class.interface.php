@@ -27,12 +27,12 @@ class iface {
 	*	@return array   The Menuentries as [name, link]
 	*	@access public
 	*/
-	public function _navigation(array $usersess) {
+	public function _navigation() {
+		$access = ($_SESSION['access'] != null) ? $_SESSION['access'] : 0;
 		$xml = new SimpleXMLElement("data/xml/navigation.xml", NULL, true);
-		if($usersess['access'] == null) $usersess['access'] = 0;
 		foreach($xml->item as $item) {
 			$level = explode(" ",(string)$item->level);
-			if(in_array($usersess['access'], $level)) {
+			if(in_array($access, $level)) {
 				$attr = $item->attributes();
 				$content[] = array("name" => $this->_translation("NAV_".$attr['name']),
 									"url" => (string)$item->url);
@@ -64,17 +64,10 @@ class iface {
 	*	@return string The translated text
 	*	@access public
 	*/
-	public function _translation($text) {
+	public static function _translation($text) {
 		$xml = new SimpleXMLElement("data/xml/translations.xml", NULL, true);
+		$lang = iface::_userlanguage();
 		if(is_object($text)) $text = strval($text);
-		$language = explode(",",$_SERVER["HTTP_ACCEPT_LANGUAGE"]);
-		$language = substr($language[1], 0, 2);
-		for($i = 0; $i <= count($xml->avaiable->language); $i++) {
-			$avaiable[] = (string)$xml->avaiable->language[$i];
-		}
-		if(in_array($language, $avaiable)) $lang = $language;
-		else $lang = "en";
-
 		if(is_string($text)) {
 			$text = strtoupper($text);
 			foreach($xml->trans as $item) {
@@ -85,13 +78,28 @@ class iface {
 		elseif(is_int($text)) {
 			foreach($xml->trans as $item) {
 				$attr = $item->attributes();
-				if($attr['id'] == $text) $output[] = (string)$item->$lang;
+				if($attr['id'] == $text) $output[] = (string) $item->$lang;
 			}
 		}
 		else log::_append("The input is not of valid format", log::WARNING);
 		if(count($output) > 1) log::_append("There is more then one translation with this name/id", log::WARNING);
 		elseif(count($output) < 1) log::_append("No translation exists with this name/id", log::WARNING);
 		else return $output[0];
+	}
+	/**
+	*	Greps the user langugage from the browser
+	*	@return string The userlanguage as ISO 2 chars
+	*	@access public 
+	*/
+	public static function _userlanguage() {
+		$xml = new SimpleXMLElement("data/xml/translations.xml", NULL, true);
+		$language = explode(",",$_SERVER["HTTP_ACCEPT_LANGUAGE"]);
+		 for($i = 0; $i <= count($xml->avaiable->language); $i++) {
+    	        $avaiable[] = (string)$xml->avaiable->language[$i];
+        }
+		if(in_array(substr($language[1], 0, 2), $avaiable)) 
+			return substr($language[1], 0, 2);
+		else return "en";
 	}
 }
 ?>

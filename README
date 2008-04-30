@@ -95,10 +95,10 @@ area. The new admin area is supposed to change the navigation completly.
 Similar like this:
 
 +------------------------------+		+-------------------------+
-| back to Player View		  |		| News					|
+| back to Player View		   |		| News					  |
 | Clan Configuration		   |		| Statistics			  |
-| User Configuration		   |		| ...					 |
-| ...						  |		| Admin Panel			 |
+| User Configuration		   |		| ...					  |
+| ...						   |		| Admin Panel			  |
 +------------------------------+		+-------------------------+
 
 [Home Text]

@@ -74,10 +74,12 @@ h3 {
     right:176px;
     top:61px;
     border: 1px solid maroon;
-    height:32px;
-    background:url('../../data/img/common/cancel.png') #f25 no-repeat left;
+    height:25px;
+    background:url('../../data/img/common/cancel.png') #f25 no-repeat top left;
     text-align:center;
     padding-left:3%;
+	padding-top:10px;
+	text-align:left;
 }
 #navigation h3 {
     direction:rtl;
@@ -97,6 +99,18 @@ h3 {
 }
 #content h2 {
     border-bottom: 1px solid;
+}
+#content label {
+	float:left;
+	width:100px;
+	display:block;
+    margin-left:25%;
+}
+#content button {
+	margin-left:37%;
+}
+#content input {
+	margin-bottom:2px;
 }
 #options li {
     list-style:none;
