@@ -24,7 +24,7 @@
 		<unit id="1" name="Ballista">
 			<era>3 4 5 6</era>
 			<health>2048</health>
-			<range>100</attack>
+			<range>100</range>
 			<attack>256</attack>
 			<speed>slow</speed>
 			<stance>passive</passive>

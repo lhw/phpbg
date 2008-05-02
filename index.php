@@ -36,7 +36,7 @@ $iface = new iface();
 
 $index->_assign("headline","phpBG");
 $index->_assign("title", "phpBG");
-$index->_assign("subtitle", "The Open-Source Browserengine");
+$index->_assign("subtitle", "The Open-Source Browsergameengine");
 $index->_assign("lang", iface::_userlanguage());
 $nav->_assign("items",$iface->_navigation());
 $index->_assign("navigation", $nav);
