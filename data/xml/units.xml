@@ -27,7 +27,7 @@
 			<range>100</range>
 			<attack>256</attack>
 			<speed>slow</speed>
-			<stance>passive</passive>
+			<stance>passive</stance>
 			<class>besiegement</class>
 		</unit>
 	</armed>
@@ -36,9 +36,9 @@
 			<era>3 4 5 6 7 8</era>
 			<health>4096</health>
 			<range>75</range>
-			<attack>384</range>
+			<attack>384</attack>
 			<speed>slow</speed>
-			<stance>aggressive</class>
+			<stance>aggressive</stance>
 			<class>naval</class>
 		</unit>
 	</marine>
@@ -49,7 +49,7 @@
 			<range>75</range>
 			<attack>128</attack>
 			<speed>fast</speed>
-			<stance>aggressive</passive>
+			<stance>aggressive</stance>
 			<class>fighter</class>
 		</unit>
 	</airforce>
