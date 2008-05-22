@@ -42,7 +42,7 @@ class template
 		{
 			if(file_exists($this->templatedir.$loadfile))
 			   $this->templatefile = $this->templatedir.$loadfile;
-			else log::append("File does not exist",log::ERROR);
+			else log::_append("File does not exist",log::ERROR);
 		}
 	}
 	/**

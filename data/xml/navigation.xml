@@ -20,4 +20,8 @@
 		<url>index.php?a=logout</url>
 		<level>1</level>
 	</item>
+	<item id="6" name="register">
+		<url>index.php?a=register</url>
+		<level>0</level>
+	</item>
 </navigation>

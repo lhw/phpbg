@@ -34,14 +34,16 @@ class auth
 		if($this->_validate($username,$password))
 		{
 			$db = new database();
-			$db->sql = "SELECT accesslevel FROM users WHERE username = ?";
+			$db->sql = "SELECT id, accesslevel FROM §PREFIX§users WHERE username = ?";
 			$db->_query(array($username));
-			if($db->result[0][0] > 0)
+			if($db->result[0][1] > 0)
 			{
 				session_start();
-				$_SESSION['LoggedIn'] = true;
+				$_SESSION['loggedin'] = true;
 				$_SESSION['username'] = $username;
-				$_SESSION['access'] = $db->result[0][0];
+				$_SESSION['userid'] = $db->result[0][0];
+				$_SESSION['access'] = $db->result[0][1];
+				header("Location: index.php");
 			}
 			else log::_append("You are banned from the server", log::WARNING);
 		}
@@ -53,7 +55,7 @@ class auth
 	*/
 	public function _logout()
 	{
-		if($_SESSION['LoggedIn'] == true)
+		if($_SESSION['loggedin'] == true)
 		{
 			session_unset();
 			session_destroy();
@@ -76,22 +78,17 @@ class auth
 		switch($security['meth'])
 		{
 			case "mcrypt":
-				$db->sql("SELECT password FROM users WHERE username = ?");
+				$db->sql = "SELECT password FROM §PREFIX§users WHERE username = ?";
 				$db->_query(array($username));
-				if($db->affected_rows == 1 && $en->_mdecrypt($db->result[0][0], $password) == $security['text'])
+				if($db->affected_rows == 1 && $en->_mdecrypt(base64_decode($db->result[0][0]), $password) == $security['text'])
 				   return true;
 				else return false;
 				break;
-			case "hash":
-				$db->sql("SELECT COUNT(username) FROM users WHERE username = ? AND password = ?");
-				$db->_query(array($username, $this->_encryption($username,$password)));
-				return ($db->affected_rows == 1) ? true : false;
-				break;
-			case "salt":
 			default:
-				$db->sql = ("SELECT password FROM users WHERE username = ?");
-				$db->query(array($username));
-				if(crypt($password, $result[0][0]) == $result[0][0]) return true;
+			case "hash":
+				$db->sql = "SELECT COUNT(username) FROM §PREFIX§users WHERE username = ? AND password = ?";
+				$db->_query(array($username, $this->_encryption($username,$password)));
+				if($db->result[0][0] == 1) return true;
 				else return false;
 				break;
 		}
@@ -109,14 +106,12 @@ class auth
 		if(is_string($user) && is_string($pass) && is_string($email) && text::_email($email))
 		{
 			$db = new database();
-			$db->sql = "INSERT INTO users(username, password, email) VALUES(?, ?, ?)";
+			$db->sql = "INSERT INTO §PREFIX§users(username, password, email, lastlogin) VALUES(?, ?, ?, UNIX_TIMESTAMP())";
 			$db->_query(array($user,$this->_encryption($user,$pass), $email));
 			if($db->affected_rows != 1)
-			{
 				log::_append("The user $user does already exist", log::ERROR);
-				return false;
-			}
-			return true;
+			else 
+				header("Location: index.php");
 		}
 		else log::_append("Form not correctly filled out", log::WARNING);
 	}
@@ -130,12 +125,12 @@ class auth
 	protected function _changepw($oldpw, $newpw)
 	{
 		$db = new database();
-		$db->sql = "SELECT COUNT(*) FROM users WHERE username = ? AND password = ?";
+		$db->sql = "SELECT COUNT(*) FROM §PREFIX§users WHERE username = ? AND password = ?";
 		$db->_query(array($_SESSION['username'], $this->_encryption($_SESSION['username'],$oldpw)));
 		if($db->affected_rows == 1)
 		{
-			$db->sql = "UPDATE users SET password = ? WHERE username = ? AND password = ?";
-			$db->_query(array($newpw, $_SESSION['username'], $oldpw));
+			$db->sql = "UPDATE §PREFIX§users SET password = ? WHERE username = ? AND password = ?";
+			$db->_query(array($this->_encryption($_SESSION['username'],$newpw), $_SESSION['username'], $this->_encryption($_SESSION['username'],$oldpw)));
 			if($db->affected_rows != 1)
 				log::_append("The password was not changed. Please contact an administrator", log::WARNING);
 		}
@@ -156,28 +151,15 @@ class auth
 			case "mcrypt":
 				if(strlen($security['text']) > 6)
 				{
-					return $en->_mencrypt($security['text'], "$user:$pass");
+					return base64_encode($en->_mencrypt($security['text'], "$user:$pass"));
 				}
 				else log::_append("Security Text not long enough. Check your properties", log::ERROR);
 				break;
-			
+			default:
 			case "hash":
 				return sha1("$user:$pass");
 				break;
-			case "salt":
-			default:
-				return $en->_ccrypt("$user:$pass");
-				break;
 		}
-	}
-
-	/**
-	*	Returns the username of the logged in user or an empty string if no user is logged in
-	*	@return string The username.
-	*/
-	public function status()
-	{
-		return isset($_SESSION['username']) ? $_SESSION['username'] : "";
 	}
 }
 ?>

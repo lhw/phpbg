@@ -91,6 +91,7 @@ class database
 	*/
 	public function _query($arrvalues = null)
 	{
+		$this->sql = str_replace("§PREFIX§", $this->data['sufx'], $this->sql);
 		switch($this->data['type'])
 		{
 			default:
@@ -126,12 +127,12 @@ class database
 	*/
 	protected function _save($arrvalues = null)
 	{
-		$this->sql = str_replace("%s", "§§", $this->db_sql);
+		$this->sql = str_replace("%s", "{REPLACE}", $this->db_sql);
 		if($arrvalues != null)
 		{
 			vsprintf(str_replace("?", "%s", $this->sql), $arrvalues);
 		}
-		$this->sql = str_replace("§§", "%s", $this->sql);
+		$this->sql = str_replace("{REPLACE}", "%s", $this->sql);
 	return mysql_escape_string($this->sql);
 	}
 }

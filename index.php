@@ -33,28 +33,53 @@ $index = new template("index.tpl");
 $nav = new template("navigation.tpl");
 $res = new template("ressources.tpl");
 $iface = new iface();
+$auth = new auth();
+$newsreader = new news();
 
+$nav->_assign("items",$iface->_navigation());
 $index->_assign("headline","phpBG");
 $index->_assign("title", "phpBG");
 $index->_assign("subtitle", "The Open-Source Browsergameengine");
 $index->_assign("lang", iface::_userlanguage());
-$nav->_assign("items",$iface->_navigation());
+$index->_assign("options", $res);
 $index->_assign("navigation", $nav);
 
+if(isset($_SESSION['log'])) {
+	$error = new template("error.tpl");
+	$error->_assign("message", $_SESSION['log']);
+	$index->_assign("error", $error);
+	unset($_SESSION['log']);
+}
+$_SESSION['trackback'] = (isset($_GET['a'])) ? $_GET['a'] : "news";
 switch($_GET['a'])
 {
 	default:
 	case "news":
-		for($i=0;$i<10;$i++)
-		        $fakes[] = array("title" => "Lorem ipsum dolor sit amet, consectetuer ", "text" => "Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euis");
 		$news = new template("news.tpl");
-		$news->_assign("newslist", $fakes);
+		$news->_assign("newslist", $newsreader->_newspage());
 		$index->_assign("content", $news);
 		echo $index->_show();
 		break;
 	case "login":
-		$login = new template("login.tpl");
-		$index->_assign("content", $login);
-		echo $index->_show();
+		if($_GET['send'] == true) {
+			$auth->_login($_POST['login'], $_POST['pass']);
+		}
+		else {
+			$login = new template("login.tpl");
+			$index->_assign("content", $login);
+			echo $index->_show();
+		}
 		break;
+	case "logout":
+		$auth->_logout();
+		break;
+	case "register":
+		if($_GET['send'] == true) {
+			$auth->_register($_POST['login'], $_POST['pass'], $_POST['email']);
+		}
+		else {
+			$register = new template("register.tpl");
+			$index->_assign("content", $register);
+			echo $index->_show();
+		}
 }

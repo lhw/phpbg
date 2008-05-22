@@ -65,13 +65,14 @@ class log
 	public static function _append($logmessage, $level = WARNING)
 	{
 		$db = new database();
-		$db->sql = "INSERT INTO log VALUES (0, ?, ?, ?, ?)"; # Id, date, level, nick, ip, message
-		$db->_query(array(time(), $level, $nick, $SERVER['REMOTE_ADDR'], $logmessage));
+		$db->sql = "INSERT INTO §PREFIX§log VALUES (0, ?, ?, ?, ?, ?)";
+		$db->_query(array(time(), $level, $_SESSION['userid'], $SERVER['REMOTE_ADDR'], $logmessage));
 		switch($level)
 		{
 			default:
 			case WARNING:
-				echo $logmessage;
+				$_SESSION['log'] .= $logmessage."<br />";
+				header("Location: index.php?a=".$_SESSION['trackback']);
 				break;
 			case ERROR:
 				die($logmessage);
@@ -85,7 +86,7 @@ class log
 	public static function _purge()
 	{
 		$db = new database();
-	$db->sql = "TRUNCATE TABLE log";
+	$db->sql = "TRUNCATE TABLE §PREFIX§log";
 	$db->query();
 	}
 }
@@ -162,22 +163,25 @@ class encryption
 		}
 		else log::_append("The supplied key is too long", log::WARNING);
 	}
-	/**
-	*   Returns the salted string
-	*   @param string $text The string to be encrypted
-	*   @return string The hashed and salted string
-	*   @access public
-	*/
-	public function _ccrypt($text)
-	{
-		if(is_string($text))
-		{
-			srand((double)microtime*1000000);
-			for($i = 0; $i <= 14; $i++) $salt .= chr(rand(42,117));
-			return crypt(sha1($text), $salt);
-		}
-		else log::_append("Form not filled out properly", log::WARNING);
-		
+}
+class news {
+	public function _read($article) {
+		$db = new database();
+		$db->sql = "SELECT * FROM §PREFIX§news WHERE id = ?";
+		$db->_query(array((int)$article));
+		return $db->result[0];
+	}
+	public function _newspage() {
+		$db = new database();
+		$db->sql = "SELECT * FROM §PREFIX§news ORDER BY id DESC LIMIT 5";
+		$db->_query();
+		return $db->result;
+	}
+	public function _browser($order, $direction, $start, $limit) {
+		$db = new database();
+		$db->sql = "SELECT * FROM §PREFIX§news ORDER BY ? ? LIMIT ?, ?";
+		$db->query(array((string)$order, (string)$direction, (int)$start, (int)$limit));
+		return $db->result;
 	}
 }
 ?>

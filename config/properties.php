@@ -16,6 +16,8 @@
 *		The password for the specified username
 *	data:
 *		The database holding the game related tables
+*	sufx:
+*		The tables suffix e.g. phpbg_*
 */
 $database['type'] = "PDOMySQL";
 $database['host'] = "localhost";
@@ -23,6 +25,7 @@ $database['port'] = "3306";
 $database['user'] = "phpbg";
 $database['pass'] = "phpbg";
 $database['data'] = "phpbg";
+$database['sufx'] = "phpbg_";
 
 //===================-[Mailservice]
 /*
@@ -53,11 +56,10 @@ $mailserv['pass'] = "Example";
 *		The method to be used for password security.
 *			- mcrypt    -> Requires php_mcrypt plugin. Is the most secure way
 *			- hash      -> Simple hash method. Used by most systems
-*			- salt      -> Combined hashing and salts more secure then hashes only
 *	text:
 *		The text to be encrypted by the mcrypt plugin.
 *	Minimum 6 characters maximum 255.
 */
-$security['meth'] = "mcrypt";
+$security['meth'] = "hash";
 $security['text'] = "A nice little Text which allows safe encryption";
 ?>

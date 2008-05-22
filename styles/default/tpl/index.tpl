@@ -21,7 +21,7 @@
         <?=$options;?>
     </div>
     <div id="footer">
-        &copy; by phpBG Team
+		<?=$title.' &copy; '.date('Y');?>
     </div>
 </body>
 </html>
