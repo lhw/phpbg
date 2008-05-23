@@ -28,7 +28,7 @@ class iface {
 	*	@access public
 	*/
 	public function _navigation() {
-		$access = ($_SESSION['access'] != null) ? $_SESSION['access'] : 0;
+		$access = (isset($_SESSION['access'])) ? $_SESSION['access'] : 0;
 		$xml = new SimpleXMLElement("data/xml/navigation.xml", NULL, true);
 		foreach($xml->item as $item) {
 			$level = explode(" ",(string)$item->level);

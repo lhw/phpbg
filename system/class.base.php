@@ -66,8 +66,9 @@ class log
 	public static function _append($logmessage, $level = WARNING)
 	{
 		$db = new database();
+		$user = (isset($_SESSION['userid'])) ? $_SESSION['userid'] : "anonynmous";
 		$db->sql = "INSERT INTO §PREFIX§log VALUES (0, ?, ?, ?, ?, ?)";
-		$db->_query(array(time(), $level, $_SESSION['userid'], $SERVER['REMOTE_ADDR'], $logmessage));
+		$db->_query(array(time(), $level, $user, $_SERVER['REMOTE_ADDR'], $logmessage));
 		switch($level)
 		{
 			default:

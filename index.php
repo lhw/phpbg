@@ -21,6 +21,7 @@
  *
  ***************************************************************************/
 session_start();
+error_reporting(E_ALL);
 
 include("system/class.auth.php"); 
 include("system/class.base.php");
