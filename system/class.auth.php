@@ -38,7 +38,6 @@ class auth
 			$db->_query(array($username));
 			if($db->result[0][1] > 0)
 			{
-				session_start();
 				$_SESSION['loggedin'] = true;
 				$_SESSION['username'] = $username;
 				$_SESSION['userid'] = $db->result[0][0];

@@ -1,4 +1,4 @@
-<? if(count($ressource) > 0): ?>
+<? if(isset($ressource) && count($ressource) > 0): ?>
 <h3>Ressources</h3>
     <table>
         <? foreach($ressource as $res): ?>
