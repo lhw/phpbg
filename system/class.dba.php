@@ -107,7 +107,7 @@ class database
 				}
 				catch(PDOException $e)
 				{
-					log::_append($e, log::ERROR);
+					die("The database connection was not successful");
 				}
 				break;
 			case "MySQL":
@@ -127,12 +127,12 @@ class database
 	*/
 	protected function _save($arrvalues = null)
 	{
-		$this->sql = str_replace("%s", "{REPLACE}", $this->db_sql);
+		$this->sql = str_replace("%s", "§REPLACE§", $this->db_sql);
 		if($arrvalues != null)
 		{
 			vsprintf(str_replace("?", "%s", $this->sql), $arrvalues);
 		}
-		$this->sql = str_replace("{REPLACE}", "%s", $this->sql);
+		$this->sql = str_replace("§REPLACE§", "%s", $this->sql);
 	return mysql_escape_string($this->sql);
 	}
 }

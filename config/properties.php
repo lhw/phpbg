@@ -48,18 +48,4 @@ $mailserv['port'] = "25";
 $mailserv['ussl'] = "yes";
 $mailserv['user'] = "webmaster@example.com";
 $mailserv['pass'] = "Example";
-
-//===================-[Security]
-/*
-*	!!!NEVER CHANGE ANYTHING IN THIS SECTION WHEN THE GAME IS ALREADY IN USE!!!
-*	meth:
-*		The method to be used for password security.
-*			- mcrypt    -> Requires php_mcrypt plugin. Is the most secure way
-*			- hash      -> Simple hash method. Used by most systems
-*	text:
-*		The text to be encrypted by the mcrypt plugin.
-*	Minimum 6 characters maximum 255.
-*/
-$security['meth'] = "hash";
-$security['text'] = "A nice little Text which allows safe encryption";
 ?>
