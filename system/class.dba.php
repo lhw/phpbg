@@ -114,7 +114,7 @@ class database
 				$this->_connect();
 				$this->state = mysql_query($this->_save($arrvalues), $this->db);
 				$this->affected_rows = mysql_affected_rows($this->db);
-				for($i = 0; $i <= $this->db_affected_rows; $i++) $this->result = mysql_result($this->db_state,$i, MYSQL_BOTH);
+				for($i = 0; $i <= $this->db_affected_rows; $i++) $this->result[] = mysql_result($this->db_state,$i, MYSQL_BOTH);
 					mysql_free_result($this->db);
 				$this->_close();
 				break;

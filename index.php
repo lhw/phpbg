@@ -21,10 +21,11 @@
  *
  ***************************************************************************/
 session_start();
+
 include("system/class.auth.php"); 
 include("system/class.base.php");
 include("system/class.dba.php");  
-include("system/class.instance.php");  
+#include("system/class.instance.php");  
 include("system/class.interface.php");
 include("system/class.mail.php");
 include("system/class.template.php");
@@ -50,7 +51,9 @@ if(isset($_SESSION['log'])) {
 	$index->_assign("error", $error);
 	unset($_SESSION['log']);
 }
+
 $_SESSION['trackback'] = (isset($_GET['a'])) ? $_GET['a'] : "news";
+
 switch($_GET['a'])
 {
 	default:

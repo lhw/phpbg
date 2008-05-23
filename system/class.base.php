@@ -54,7 +54,8 @@ class timer
 }
 class log
 {
-	const ERROR = 0;
+	const FAILEDLOGIN = 0;
+	const ERROR = 2;
 	const WARNING = 1;
 	/**
 	*   Appends the logmessage to the log and terminates script execution on ERROR
@@ -71,6 +72,7 @@ class log
 		{
 			default:
 			case WARNING:
+			case FAILEDLOGIN:
 				$_SESSION['log'] .= $logmessage."<br />";
 				header("Location: index.php?a=".$_SESSION['trackback']);
 				break;
@@ -86,8 +88,8 @@ class log
 	public static function _purge()
 	{
 		$db = new database();
-	$db->sql = "TRUNCATE TABLE §PREFIX§log";
-	$db->query();
+		$db->sql = "TRUNCATE TABLE §PREFIX§log";
+		$db->query();
 	}
 }
 class text

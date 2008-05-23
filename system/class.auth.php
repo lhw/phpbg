@@ -45,9 +45,9 @@ class auth
 				$_SESSION['access'] = $db->result[0][1];
 				header("Location: index.php");
 			}
-			else log::_append("You are banned from the server", log::WARNING);
+			else log::_append("You are banned from the server", log::FAILEDLOGINS);
 		}
-		else log::_append("Your login data is not valid", log::WARNING);
+		else log::_append("Your login data is not valid", log::FAILEDLOGINS);
 	}
 	/**
 	*   Destroys the sessions
@@ -72,26 +72,11 @@ class auth
 	*/
 	public function _validate($username, $password)
 	{
-		include("config/properties.php");
 		$db = new database();
-		$en = new encryption();
-		switch($security['meth'])
-		{
-			case "mcrypt":
-				$db->sql = "SELECT password FROM §PREFIX§users WHERE username = ?";
-				$db->_query(array($username));
-				if($db->affected_rows == 1 && $en->_mdecrypt(base64_decode($db->result[0][0]), $password) == $security['text'])
-				   return true;
-				else return false;
-				break;
-			default:
-			case "hash":
-				$db->sql = "SELECT COUNT(username) FROM §PREFIX§users WHERE username = ? AND password = ?";
-				$db->_query(array($username, $this->_encryption($username,$password)));
-				if($db->result[0][0] == 1) return true;
-				else return false;
-				break;
-		}
+		$db->sql = "SELECT COUNT(username) FROM §PREFIX§users WHERE username = ? AND password = ?";
+		$db->_query(array($username, sha1("$username:$password")));
+		if($db->result[0][0] == 1) return true;
+		else return false;
 	}
 	/**
 	*   Method to register
@@ -107,7 +92,7 @@ class auth
 		{
 			$db = new database();
 			$db->sql = "INSERT INTO §PREFIX§users(username, password, email, lastlogin) VALUES(?, ?, ?, UNIX_TIMESTAMP())";
-			$db->_query(array($user,$this->_encryption($user,$pass), $email));
+			$db->_query(array($user,sha1("$user:$pass"), $email));
 			if($db->affected_rows != 1)
 				log::_append("The user $user does already exist", log::ERROR);
 			else 
@@ -126,40 +111,15 @@ class auth
 	{
 		$db = new database();
 		$db->sql = "SELECT COUNT(*) FROM §PREFIX§users WHERE username = ? AND password = ?";
-		$db->_query(array($_SESSION['username'], $this->_encryption($_SESSION['username'],$oldpw)));
+		$db->_query(array($_SESSION['username'], sha1($_SESSION['username'].":".$oldpwd)));
 		if($db->affected_rows == 1)
 		{
 			$db->sql = "UPDATE §PREFIX§users SET password = ? WHERE username = ? AND password = ?";
-			$db->_query(array($this->_encryption($_SESSION['username'],$newpw), $_SESSION['username'], $this->_encryption($_SESSION['username'],$oldpw)));
+			$db->_query(array(sha1($_SESSION['username'].":".$newpw), $_SESSION['username'], sha1($_SESSION['username'].":".$oldpw)));
 			if($db->affected_rows != 1)
 				log::_append("The password was not changed. Please contact an administrator", log::WARNING);
 		}
 		else log::_append("The user/password combination does not exist. Please check your input", log::WARNING);
-	}
-	/**
-	*   Provides the encryption or hashing of the password based on the method selected
-	*   @param string $user The username used for the encryption
-	*   @param string $pass The password combined with the username
-	*   @return string The encrypted string.
-	*/
-	public function _encryption($user, $pass)
-	{
-		include("config/properties.php");
-		$en = new encryption();
-		switch($security['meth'])
-		{
-			case "mcrypt":
-				if(strlen($security['text']) > 6)
-				{
-					return base64_encode($en->_mencrypt($security['text'], "$user:$pass"));
-				}
-				else log::_append("Security Text not long enough. Check your properties", log::ERROR);
-				break;
-			default:
-			case "hash":
-				return sha1("$user:$pass");
-				break;
-		}
 	}
 }
 ?>
