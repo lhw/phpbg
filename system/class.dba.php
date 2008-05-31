@@ -43,7 +43,7 @@ class database
 		{
 			$this->data = $database;
 		}
-		else log::_append("Database type is not supported", log::ERROR);
+		else die("Database type is not supported");
 	}
 	/**
 	*   Connects to the database via the defined database layer
