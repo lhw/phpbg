@@ -55,6 +55,9 @@ if(isset($_SESSION['log'])) {
 
 $_SESSION['trackback'] = (isset($_GET['a'])) ? $_GET['a'] : "news";
 
+if(!isset($_GET['a']))
+	$_GET['a'] = '';
+
 switch($_GET['a'])
 {
 	default:
