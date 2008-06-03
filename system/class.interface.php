@@ -93,12 +93,13 @@ class iface {
 	*/
 	public static function _userlanguage() {
 		$xml = new SimpleXMLElement("data/xml/translations.xml", NULL, true);
-		$language = explode(",",$_SERVER["HTTP_ACCEPT_LANGUAGE"]);
-		 for($i = 0; $i <= count($xml->avaiable->language); $i++) {
+		$languages = isset($_SERVER["HTTP_ACCEPT_LANGUAGE"]) ? $_SERVER["HTTP_ACCEPT_LANGUAGE"] : "en_EN";
+		$language = explode(",",$languages);
+		for($i = 0; $i <= count($xml->avaiable->language); $i++) {
     	        $avaiable[] = (string)$xml->avaiable->language[$i];
         }
-		if(in_array(substr($language[1], 0, 2), $avaiable)) 
-			return substr($language[1], 0, 2);
+		if(in_array(substr($language[0], 0, 2), $avaiable)) 
+			return substr($language[0], 0, 2);
 		else return "en";
 	}
 }
