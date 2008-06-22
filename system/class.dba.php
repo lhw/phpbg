@@ -23,117 +23,82 @@
 
 class database
 {
-	protected $db;
-	protected $data;
-	protected $state;
-	protected $supported = array("PDOMySQL", "MySQL");
-	
-	public $sql;
+	private $db;
+	private $data;
+	private $state;
+	private $sql;
+	private $affected_rows;
 	public $result;
-	public $affected_rows;
-	
+
 	/**
-	*   Loads the properties and assigns them to a protected variable
+	*   Loads the properties and assigns them to a private variable
 	*   @access public
 	*/
 	public function __construct()
 	{
 		include("config/properties.php");
-		if(in_array($database['type'], $this->supported))
-		{
-			$this->data = $database;
-		}
-		else die("Database type is not supported");
+		$this->data = $database;
 	}
 	/**
 	*   Connects to the database via the defined database layer
-	*   @access protected
+	*   @access private
 	*/
-	protected function _connect()
+	private function connect()
 	{
-		switch($this->data['type'])
-		{
-			default:
-			case "PDOMySQL":
-				$this->db = new PDO("mysql:host=".$this->data['host'].";
-								port=".$this->data['port'].";
-								dbname=".$this->data['data'],
-								$this->data['user'],
-								$this->data['pass']);
-				break;
-			case "MySQL":
-				$this->db = mysql_connect($this->data['host'].$this->data['host'],$this->data['user'],$this->data['pass']);
-					mysql_select_db($this->data['data'], $this->db);
-				break;
-		}
+		$this->db = new PDO("mysql:host=".$this->data['host'].";
+							port=".$this->data['port'].";
+							dbname=".$this->data['data'],
+							$this->data['user'],
+							$this->data['pass']);
 	}
 	/**
 	*   Closes the database connection of the database layer
-	*   @access protected
+	*   @access private
 	*/
-	protected function _close()
+	private function close()
 	{
-		switch($this->data['type'])
-		{
-			default:
-			case "PDOMySQL":
-				$this->db = null;
-				break;
-			case "MySQL":
-				mysql_close($this->db);
-				break;
-		}
+		$this->db = null;
 	}
 	/**
 	*   Executes the query given in $this->sql. Each "?" must have a replacement in $arrvalues
 	*   @param array $arrvalues The values ordered for the replacements
 	*   @access public
 	*/
-	public function _query($arrvalues = null)
+	public function query($arrvalues = null)
 	{
 		$this->sql = str_replace("§PREFIX§", $this->data['sufx'], $this->sql);
-		switch($this->data['type'])
+		try
 		{
-			default:
-			case "PDOMySQL":
-				try
-				{
-					$this->_connect();
-					$this->state = $this->db->prepare($this->sql);
-					($arrvalues != null) ? $this->state->execute($arrvalues) : $this->state->execute();
-					$this->affected_rows = $this->state->rowCount();
-					$this->result = $this->state->fetchAll();
-					$this->_close();
-				}
-				catch(PDOException $e)
-				{
-					die("The database connection was not successful");
-				}
-				break;
-			case "MySQL":
-				$this->_connect();
-				$this->state = mysql_query($this->_save($arrvalues), $this->db);
-				$this->affected_rows = mysql_affected_rows($this->db);
-				for($i = 0; $i <= $this->db_affected_rows; $i++) $this->result[] = mysql_result($this->db_state,$i, MYSQL_BOTH);
-					mysql_free_result($this->db);
-				$this->_close();
-				break;
+			$this->connect();
+			$this->state = $this->db->prepare($this->sql);
+			($arrvalues != null) ? $this->state->execute($arrvalues) : $this->state->execute();
+			$this->affected_rows = $this->state->rowCount();
+			$this->result = $this->state->fetchAll();
+			$this->close();
+		}
+		catch(PDOException $e)
+		{
+			die("The database connection was not successful");
 		}
 	}
 	/**
-	*   @deprecated
-	*   In order to fit the PDOmysql syntax the normal has to be modified
-	*   @access protected
+	*	Counts the rows affected by the query
+	*	@return	int	The affected rows
+	*	@access	public
 	*/
-	protected function _save($arrvalues = null)
-	{
-		$this->sql = str_replace("%s", "§REPLACE§", $this->db_sql);
-		if($arrvalues != null)
-		{
-			vsprintf(str_replace("?", "%s", $this->sql), $arrvalues);
+	public function getrowcount() {
+		if($this->affected_rows > 0) {
+			return (int)$this->affected_rows;
 		}
-		$this->sql = str_replace("§REPLACE§", "%s", $this->sql);
-	return mysql_escape_string($this->sql);
+	}
+	/**
+	*	Sets the SQL-Querystring
+	*	@access	public
+	*/
+	public function setsql($sql) {
+		if(is_string($sql) && $sql != null) {
+			$this->sql = $sql;
+		}
 	}
 }
 ?>

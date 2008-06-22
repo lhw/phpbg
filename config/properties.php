@@ -1,9 +1,6 @@
 <?php
 //===================-[Database]
 /*
-*	type:
-*		Can be either PDOMySQL or MySQL.
-*		Default is PDOMySQL which is also recommended
 *	host:
 *		If the MySQL-server runs on the same machine its localhost
 *		Only change if you know its otherwise
@@ -19,7 +16,6 @@
 *	sufx:
 *		The tables suffix e.g. phpbg_*
 */
-$database['type'] = "PDOMySQL";
 $database['host'] = "localhost";
 $database['port'] = "3306";
 $database['user'] = "phpbg";
@@ -27,6 +23,16 @@ $database['pass'] = "phpbg";
 $database['data'] = "phpbg";
 $database['sufx'] = "phpbg_";
 
+//===================-[Site Information]
+/*
+*	title:
+*		The title of the website, displayed in the headline
+*		and the window title
+*	subtitle:
+*		A short description of your website
+*/
+$info['title'] = "phpBG";
+$info['subtitle'] = "phpBG the open Browsergame engine";
 //===================-[Mailservice]
 /*
 *	type:

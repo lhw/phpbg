@@ -28,7 +28,7 @@ class timer
 	*   Starts the counter
 	*   @access public
 	*/
-	public function _start()
+	public function start()
 	{
 		$mtime = explode(" ", microtime());
 		$this->executiontime = $mtime[1].$mtime[0];
@@ -37,7 +37,7 @@ class timer
 	*   Stops the counter
 	*   @access public
 	*/
-	public function _stop()
+	public function stop()
 	{
 		$mtime = explode(" ", microtime());
 		$this->executiontime = round($mtime[1].$mtime[0] - $this->executiontime, 4);
@@ -47,7 +47,7 @@ class timer
 	*   @return float   The elapsed time in seconds rounded to 4 digits
 	*   @access public
 	*/
-	public function _elapsedtime()
+	public function elapsedtime()
 	{
 		return $this->executiontime;
 	}
@@ -63,12 +63,12 @@ class log
 	*   @param  int $level  The seriousness of the error
 	*   @access public
 	*/
-	public static function _append($logmessage, $level = WARNING)
+	public static function append($logmessage, $level = WARNING)
 	{
 		$db = new database();
 		$user = (isset($_SESSION['userid'])) ? $_SESSION['userid'] : "anonynmous";
 		$db->sql = "INSERT INTO §PREFIX§log VALUES (0, ?, ?, ?, ?, ?)";
-		$db->_query(array(time(), $level, $user, $_SERVER['REMOTE_ADDR'], $logmessage));
+		$db->query(array(time(), $level, $user, $_SERVER['REMOTE_ADDR'], $logmessage));
 		switch($level)
 		{
 			default:
@@ -86,7 +86,7 @@ class log
 	*   Purges the log
 	*   @access public
 	*/
-	public static function _purge()
+	public static function purge()
 	{
 		$db = new database();
 		$db->sql = "TRUNCATE TABLE §PREFIX§log";
@@ -102,9 +102,10 @@ class text
 	*   @access public
 	*   @static
 	*/
-	public static function _plain($string)
+	public static function m_plain($string)
 	{
-		return preg_replace("/[^A-Za-z0-9 _.@]/","",$string);
+		if(preg_match("/[^A-Za-z0-9]/", $string)) return true;
+		else return false;
 	}
 	/**
 	*   Standard E-Mail expression
@@ -113,7 +114,7 @@ class text
 	*   @access public
 	*   @static
 	*/
-	public static function _email($string)
+	public static function m_email($string)
 	{
 		if(preg_match("/[a-z0-9._-]+@([a-z0-9-]{2,255}\.)+[a-z]{2,5}/i",$string)) return true;
 		else return false;
@@ -128,12 +129,12 @@ class encryption
 	*   @return string The encrypted string
 	*   @acess public
 	*/
-	public function _mencrypt($text, $key)
+	public function mencrypt($text, $key)
 	{
 		srand((double)microtime*1000000);
 		$td = mcrypt_module_open(MCRYPT_TRIPLEDES, '', MCRYPT_MODE_CFB, '');
 		$iv = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_DEV_RANDOM);
-	$ks = mcrypt_enc_get_key_size($td);
+		$ks = mcrypt_enc_get_key_size($td);
 		if(strlen($key) <= $ks)
 		{
 			mcrypt_generic_init($td, $key, $iv);
@@ -142,7 +143,7 @@ class encryption
 			mcrypt_module_close($td);
 			return $enc;
 		}
-		else log::_append("The supplied key is too long", log::WARNING);
+		else log::append("The supplied key is too long", log::WARNING);
 	}
 	/**
 	*   Returns the decrypted string for checking
@@ -151,11 +152,11 @@ class encryption
 	*   @return string The decrypted string
 	*   @access public
 	*/
-	public function _mdecrypt($text, $key)
+	public function mdecrypt($text, $key)
 	{
 		$td = mcrypt_module_open(MCRYPT_TRIPLEDES, '', MCRYPT_MODE_CFB, '');
 		$iv = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_DEV_RANDOM);
-	$ks = mcrypt_enc_get_key_size($td);
+		$ks = mcrypt_enc_get_key_size($td);
 		if(strlen($key) <= $ks)
 		{
 			mcrypt_generic_init($td, $key, $iv);
@@ -164,25 +165,25 @@ class encryption
 			mcrypt_module_close($td);
 			return $dec;
 		}
-		else log::_append("The supplied key is too long", log::WARNING);
+		else log::append("The supplied key is too long", log::WARNING);
 	}
 }
 class news {
-	public function _read($article) {
+	public static function read($article) {
 		$db = new database();
-		$db->sql = "SELECT * FROM §PREFIX§news WHERE id = ?";
-		$db->_query(array((int)$article));
+		$db->setsql( "SELECT * FROM §PREFIX§news WHERE id = ?");
+		$db->query(array((int)$article));
 		return $db->result[0];
 	}
-	public function _newspage() {
+	public static function newspage() {
 		$db = new database();
-		$db->sql = "SELECT * FROM §PREFIX§news ORDER BY id DESC LIMIT 5";
-		$db->_query();
+		$db->setsql("SELECT * FROM §PREFIX§news ORDER BY id DESC LIMIT 5");
+		$db->query();
 		return $db->result;
 	}
-	public function _browser($order, $direction, $start, $limit) {
+	public static function browser($order, $direction, $start, $limit) {
 		$db = new database();
-		$db->sql = "SELECT * FROM §PREFIX§news ORDER BY ? ? LIMIT ?, ?";
+		$db->setsql("SELECT * FROM §PREFIX§news ORDER BY ? ? LIMIT ?, ?");
 		$db->query(array((string)$order, (string)$direction, (int)$start, (int)$limit));
 		return $db->result;
 	}

@@ -1,6 +1,6 @@
 <?php
 /***************************************************************************
- *						   system/class.template.php
+ *							system/class.template.php
  *							-------------------
  *	 begin				: 03-29-2008
  *	 copyright			: (c) 2008 The phpBG Team
@@ -10,14 +10,14 @@
 
 /***************************************************************************
  *
- *   This program is free software; you can redistribute it and/or modify
- *   it under the terms of the GNU General Public License as published by
- *   the Free Software Foundation; either version 3 of the License, or
- *   (at your option) any later version.
- *   This program is distributed in the hope that it will be useful,
- *   but WITHOUT ANY WARRANTY; without even the implied warranty of
- *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *   GNU General Public License for more details.
+ *	This program is free software; you can redistribute it and/or modify
+ *	it under the terms of the GNU General Public License as published by
+ *	the Free Software Foundation; either version 3 of the License, or
+ *	(at your option) any later version.
+ *	This program is distributed in the hope that it will be useful,
+ *	but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *	MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ *	GNU General Public License for more details.
  *
  ***************************************************************************/
 
@@ -27,10 +27,10 @@ class template
 	protected $templatefile;
 	protected $replacement;
 	/**
-	*   Loads the template directory
-	*   @param $loadfile	The template file to load if null index.tpl is loaded
-	*   @param $rootdir	 Sets the template root dir if not set /img/toc/template is set
-	*   @access public
+	*	Loads the template directory
+	*	@param $loadfile	The template file to load if null index.tpl is loaded
+	*	@param $rootdir	 Sets the template root dir if not set /img/toc/template is set
+	*	@access public
 	*/
 	public function __construct($loadfile = null, $rootdir = null)
 	{
@@ -41,16 +41,16 @@ class template
 		else
 		{
 			if(file_exists($this->templatedir.$loadfile))
-			   $this->templatefile = $this->templatedir.$loadfile;
-			else log::_append("File does not exist",log::ERROR);
+				$this->templatefile = $this->templatedir.$loadfile;
+			else log::append("File does not exist",log::ERROR);
 		}
 	}
 	/**
-	*   Method to be echoed
-	*   @return string  The site template
-	*   @access public
+	*	Method to be echoed
+	*	@return string  The site template
+	*	@access public
 	*/
-	public function _show()
+	public function show()
 	{
 		if(is_array($this->replacement)) extract($this->replacement);
 		ob_start();
@@ -60,15 +60,22 @@ class template
 		return $content;
 	}
 	/**
-	*   Sets the first parameter to the second value
-	*   @param $env		 The enviroment variable set in the HTML code
-	*   @param $value	   The value which the enviroment should be set to
-	*   @access public
+	*	Sets the first parameter to the second value
+	*	@param $env		 The enviroment variable set in the HTML code
+	*	@param $value		The value which the enviroment should be set to
+	*	@access public
 	*/
-	public function _assign($env, $value)
+	public function assign($env, $value)
 	{
 		if($env && $value)
-			$this->replacement[$env] = is_object($value) ? $value->_show() : $value;
+			$this->replacement[$env] = is_object($value) ? $value->show() : $value;
+	}
+	/**
+	*	Prints out the complete template design with all information:
+	*	@access public
+	*/
+	public function view() {
+		print $this->show();
 	}
 }
 ?>

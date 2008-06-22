@@ -31,62 +31,44 @@ include("system/class.interface.php");
 include("system/class.mail.php");
 include("system/class.template.php");
 
-$index = new template("index.tpl");
-$nav = new template("navigation.tpl");
-$res = new template("ressources.tpl");
-$iface = new iface();
-$auth = new auth();
-$newsreader = new news();
-
-$nav->_assign("items",$iface->_navigation());
-$index->_assign("headline","phpBG");
-$index->_assign("title", "phpBG");
-$index->_assign("subtitle", "The Open-Source Browsergameengine");
-$index->_assign("lang", iface::_userlanguage());
-$index->_assign("options", $res);
-$index->_assign("navigation", $nav);
+$index = iface::loadData(new template());
 
 if(isset($_SESSION['log'])) {
 	$error = new template("error.tpl");
-	$error->_assign("message", $_SESSION['log']);
-	$index->_assign("error", $error);
+	$error->assign("message", $_SESSION['log']);
+	$index->assign("error", $error);
 	unset($_SESSION['log']);
 }
 
+$auth = isset($_SESSION['auth']) ? unserialize($_SESSION['auth']) : new auth();
 $_SESSION['trackback'] = (isset($_GET['a'])) ? $_GET['a'] : "news";
-
-if(!isset($_GET['a']))
-	$_GET['a'] = '';
 
 switch($_GET['a'])
 {
 	default:
 	case "news":
 		$news = new template("news.tpl");
-		$news->_assign("newslist", $newsreader->_newspage());
-		$index->_assign("content", $news);
-		echo $index->_show();
+		$news->assign("newslist", news::newspage());
+		$index->assign("content", $news);
 		break;
 	case "login":
-		if($_GET['send'] == true) {
-			$auth->_login($_POST['login'], $_POST['pass']);
-		}
+		if(isset($_POST['login']) && isset($_POST['pass']))
+			$auth->login($_POST['login'], $_POST['pass']);
 		else {
 			$login = new template("login.tpl");
-			$index->_assign("content", $login);
-			echo $index->_show();
+			$index->assign("content", $login);
 		}
 		break;
 	case "logout":
-		$auth->_logout();
+		$auth->logout();
 		break;
 	case "register":
-		if($_GET['send'] == true) {
-			$auth->_register($_POST['login'], $_POST['pass'], $_POST['email']);
-		}
+		if(isset($_POST['login']) && isset($_POST['pass']) && isset($_POST['email']))
+			$auth->register($_POST['login'], $_POST['pass'], $_POST['email']);
 		else {
 			$register = new template("register.tpl");
-			$index->_assign("content", $register);
-			echo $index->_show();
+			$index->assign("content", $register);
 		}
 }
+$index->view();
+?>
